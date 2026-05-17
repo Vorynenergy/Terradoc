@@ -1,0 +1,80 @@
+{
+  "classification": [
+    {
+      "type": "A",
+      "badge": "ok",
+      "name": "Tipo A — Excelente",
+      "rho_min": 0,
+      "rho_max": 10,
+      "desc": "Terreno pantanoso, arcilla muy húmeda.",
+      "examples": ["Arcilla saturada","Suelo de marisma","Terreno inundable"],
+      "grounding_difficulty": "Muy fácil"
+    },
+    {
+      "type": "B",
+      "badge": "ok",
+      "name": "Tipo B — Bueno",
+      "rho_min": 10,
+      "rho_max": 100,
+      "desc": "Arcilla, suelo agrícola, arena fina húmeda.",
+      "examples": ["Arcilla normal","Suelo agrícola","Arena limosa húmeda"],
+      "grounding_difficulty": "Fácil"
+    },
+    {
+      "type": "C",
+      "badge": "info",
+      "name": "Tipo C — Moderado",
+      "rho_min": 100,
+      "rho_max": 300,
+      "desc": "Arena, turba, suelo superficial seco.",
+      "examples": ["Arena suelta","Turba","Suelo seco superficial"],
+      "grounding_difficulty": "Moderado"
+    },
+    {
+      "type": "D",
+      "badge": "warn",
+      "name": "Tipo D — Pobre",
+      "rho_min": 300,
+      "rho_max": 1000,
+      "desc": "Roca meteorizada, grava, arena seca.",
+      "examples": ["Grava","Roca meteorizada","Arena muy seca"],
+      "grounding_difficulty": "Difícil — requiere tratamiento"
+    },
+    {
+      "type": "E",
+      "badge": "fail",
+      "name": "Tipo E — Muy pobre",
+      "rho_min": 1000,
+      "rho_max": 99999,
+      "desc": "Roca dura, arena muy seca.",
+      "examples": ["Granito","Basalto","Arena desértica"],
+      "grounding_difficulty": "Muy difícil — malla especial o tratamiento intensivo"
+    }
+  ],
+  "treatment_methods": [
+    {
+      "name": "Bentonita sódica",
+      "applicable_types": ["C","D","E"],
+      "rho_reduction": "30-60%",
+      "notes": "Mezclar con agua, aplicar alrededor de electrodos"
+    },
+    {
+      "name": "Grafito conductivo",
+      "applicable_types": ["D","E"],
+      "rho_reduction": "40-70%",
+      "notes": "Backfill de alta conductividad"
+    },
+    {
+      "name": "Cemento conductivo (COKE BREEZE)",
+      "applicable_types": ["C","D","E"],
+      "rho_reduction": "50-75%",
+      "notes": "Mezcla cementante con coque de petróleo"
+    },
+    {
+      "name": "GEM conductivo (ERICO/equiv.)",
+      "applicable_types": ["C","D","E"],
+      "rho_reduction": "40-65%",
+      "notes": "Compuesto mineral de bajo mantenimiento"
+    }
+  ]
+}

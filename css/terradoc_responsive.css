@@ -1,0 +1,68 @@
+/**
+ * TerraDoc SPT — responsive.css
+ * Mobile, tablet, and responsive layout overrides
+ */
+
+/* ── TABLET (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  #sidebar { width: 180px; min-width: 180px; }
+  .card-grid.g4 { grid-template-columns: 1fr 1fr; }
+  .form-grid.g3 { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── MOBILE (≤ 768px) ── */
+@media (max-width: 768px) {
+  body { overflow: auto; }
+
+  #sidebar { display: none; }
+  #shell { flex-direction: column; }
+
+  #topbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 14px;
+    gap: 8px;
+  }
+  #topbar .norm-tags { display: none; }
+
+  #header-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 14px;
+    gap: 6px;
+  }
+  #header-bar .run-btn { width: 100%; justify-content: center; }
+
+  #stepper { overflow-x: auto; gap: 0; }
+  .step { font-size: 10px; padding: 4px 4px; white-space: nowrap; }
+
+  #content-area { padding: 14px 14px; }
+
+  .card-grid.g2,
+  .card-grid.g3,
+  .card-grid.g4 { grid-template-columns: 1fr; }
+
+  .form-grid,
+  .form-grid.g3,
+  .form-grid.g1 { grid-template-columns: 1fr; }
+
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  .svg-body { max-height: 220px; }
+
+  .meas-tbl td input { width: 80px; }
+}
+
+/* ── PRINT ── */
+@media print {
+  body { overflow: visible !important; font-size: 11px; }
+  #sidebar, #topbar, .btn, .btn-row,
+  #progress-overlay, .spt-selector,
+  #header-bar .run-btn { display: none !important; }
+  #header-bar { border-bottom: 1px solid #ccc; padding-bottom: 8px; }
+  #content-area { padding: 0; }
+  .card { break-inside: avoid; border: 1px solid #ddd; }
+  table { break-inside: avoid; }
+  .sec-title { font-size: 14px; }
+  a { text-decoration: none; color: inherit; }
+}

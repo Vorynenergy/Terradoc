@@ -1,0 +1,81 @@
+/**
+ * TerraDoc SPT — terradoc_print.css
+ * Voryn Energy Platform — TerraDoc module
+ * Print-specific styles for technical document output
+ */
+
+@media print {
+  /* ── HIDE UI CHROME ── */
+  #topbar,
+  #sidebar,
+  #stepper,
+  #header-bar .run-btn,
+  .btn-row,
+  .btn,
+  #progress-overlay,
+  .spt-selector,
+  .filter-row,
+  .svg-toolbar button,
+  #malla-panel > *:not(.svg-panel),
+  nav { display: none !important; }
+
+  /* ── LAYOUT ── */
+  body { overflow: visible !important; font-size: 11pt; line-height: 1.5; color: #000; }
+  #shell { display: block; }
+  #content-area { padding: 0; overflow: visible; }
+  #workspace { overflow: visible; }
+  #header-bar { border-bottom: 1px solid #999; padding-bottom: 8px; margin-bottom: 16px; }
+
+  /* ── PAGE BREAKS ── */
+  .card { break-inside: avoid; border: 1px solid #ccc; page-break-inside: avoid; }
+  table { break-inside: avoid; page-break-inside: avoid; }
+  h2, h3, .sec-title { break-after: avoid; page-break-after: avoid; }
+  .sec-content { break-before: auto; page-break-before: auto; }
+
+  /* ── TYPOGRAPHY ── */
+  .sec-title { font-size: 14pt; font-weight: 700; margin-bottom: 8pt; color: #000; }
+  .sec-sub { font-size: 10pt; color: #444; margin-bottom: 12pt; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── TABLES ── */
+  th { background: #f0f0f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .rec-row td { background: #e8f4ee !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .fail-row td { background: #fff0f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* ── BADGES ── */
+  .badge { border: 1px solid #ccc; padding: 1pt 4pt; font-size: 8pt; }
+  .badge.ok { color: #1b5e40; }
+  .badge.fail { color: #991b1b; }
+  .badge.warn { color: #92400e; }
+
+  /* ── ALERTS ── */
+  .alert { border: 1px solid #ccc; padding: 6pt 8pt; margin-bottom: 6pt; font-size: 10pt; }
+  .alert.ok { border-color: #a7d5bc; }
+  .alert.danger { border-color: #fca5a5; }
+
+  /* ── REPORT PREVIEW ── */
+  .report-preview { border: none; padding: 0; box-shadow: none; max-width: 100%; }
+  .report-preview .rp-cover { border-bottom: 2pt solid #1b5e40; }
+
+  /* ── SVG ── */
+  .svg-body { max-height: none; min-height: auto; }
+  .svg-body svg { max-width: 100%; }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer { border: 1px solid #ccc; font-size: 9pt; }
+
+  /* ── GAUGES — hide SVG arcs, show text values ── */
+  .gauge-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8pt; }
+  .gauge-card { border: 1px solid #ccc; }
+  .gauge-svg { display: none; }
+
+  /* ── NORM TAGS ── */
+  .norm-tag { border: 1px solid #a7d5bc; }
+
+  /* ── FOOTER ── */
+  @page {
+    margin: 1.5cm 1.8cm;
+    @bottom-right { content: "TerraDoc SPT | Voryn Energy | Pág. " counter(page) " de " counter(pages); font-size: 8pt; color: #666; }
+    @bottom-left { content: "IEEE 80-2013 | IEEE 81-2012 | Documento técnico confidencial"; font-size: 8pt; color: #666; }
+  }
+}

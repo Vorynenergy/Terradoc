@@ -1,0 +1,252 @@
+[
+  {
+    "id": "VARILLA_01",
+    "type": "VARILLA",
+    "desc": "Una varilla vertical",
+    "rods": 1,
+    "L": 0.0,
+    "Rf": 1.0,
+    "mat_m": 2,
+    "complexity": 1
+  },
+  {
+    "id": "VARILLA_02",
+    "type": "VARILLA",
+    "desc": "1 varilla + contrapeso 3m",
+    "rods": 1,
+    "L": 3.0,
+    "Rf": 0.82,
+    "mat_m": 5,
+    "complexity": 1
+  },
+  {
+    "id": "VARILLA_03",
+    "type": "VARILLA",
+    "desc": "1 varilla + contrapeso 6m",
+    "rods": 1,
+    "L": 6.0,
+    "Rf": 0.7,
+    "mat_m": 8,
+    "complexity": 1
+  },
+  {
+    "id": "VARILLA_04",
+    "type": "VARILLA",
+    "desc": "1 varilla + contrapeso 9m",
+    "rods": 1,
+    "L": 9.0,
+    "Rf": 0.62,
+    "mat_m": 11,
+    "complexity": 1
+  },
+  {
+    "id": "VARILLA_05",
+    "type": "VARILLA",
+    "desc": "2 varillas + conductor 3m",
+    "rods": 2,
+    "L": 3.0,
+    "Rf": 0.58,
+    "mat_m": 5,
+    "complexity": 2
+  },
+  {
+    "id": "VARILLA_06",
+    "type": "VARILLA",
+    "desc": "2 varillas + conductor 6m",
+    "rods": 2,
+    "L": 6.0,
+    "Rf": 0.5,
+    "mat_m": 8,
+    "complexity": 2
+  },
+  {
+    "id": "VARILLA_07",
+    "type": "VARILLA",
+    "desc": "2 varillas + conductor 9m",
+    "rods": 2,
+    "L": 9.0,
+    "Rf": 0.44,
+    "mat_m": 11,
+    "complexity": 2
+  },
+  {
+    "id": "VARILLA_08",
+    "type": "VARILLA",
+    "desc": "3 varillas L=3m",
+    "rods": 3,
+    "L": 3.0,
+    "Rf": 0.42,
+    "mat_m": 8,
+    "complexity": 2
+  },
+  {
+    "id": "VARILLA_09",
+    "type": "VARILLA",
+    "desc": "3 varillas L=6m",
+    "rods": 3,
+    "L": 6.0,
+    "Rf": 0.35,
+    "mat_m": 14,
+    "complexity": 3
+  },
+  {
+    "id": "VARILLA_10",
+    "type": "VARILLA",
+    "desc": "3 varillas L=9m",
+    "rods": 3,
+    "L": 9.0,
+    "Rf": 0.3,
+    "mat_m": 20,
+    "complexity": 3
+  },
+  {
+    "id": "ANILLO_01",
+    "type": "ANILLO",
+    "desc": "Doble anillo R1=0.9m R2=1.5m",
+    "rods": 0,
+    "L": 0.0,
+    "Rf": 0.55,
+    "mat_m": 15,
+    "complexity": 2
+  },
+  {
+    "id": "ANILLO_02",
+    "type": "ANILLO",
+    "desc": "Doble anillo + 1 varilla",
+    "rods": 1,
+    "L": 0.0,
+    "Rf": 0.48,
+    "mat_m": 17,
+    "complexity": 2
+  },
+  {
+    "id": "ANILLO_03",
+    "type": "ANILLO",
+    "desc": "Doble anillo + 2 varillas",
+    "rods": 2,
+    "L": 0.0,
+    "Rf": 0.43,
+    "mat_m": 20,
+    "complexity": 2
+  },
+  {
+    "id": "ANILLO_04",
+    "type": "ANILLO",
+    "desc": "Doble anillo + contrapeso 5m",
+    "rods": 1,
+    "L": 5.0,
+    "Rf": 0.4,
+    "mat_m": 22,
+    "complexity": 3
+  },
+  {
+    "id": "ANILLO_05",
+    "type": "ANILLO",
+    "desc": "Doble anillo + 2 contrapesos 5m",
+    "rods": 2,
+    "L": 5.0,
+    "Rf": 0.35,
+    "mat_m": 28,
+    "complexity": 3
+  },
+  {
+    "id": "ANILLO_06",
+    "type": "ANILLO",
+    "desc": "Doble anillo + 3 contrapesos 5m",
+    "rods": 3,
+    "L": 5.0,
+    "Rf": 0.3,
+    "mat_m": 34,
+    "complexity": 3
+  },
+  {
+    "id": "ANILLO_07",
+    "type": "ANILLO",
+    "desc": "Doble anillo + 4 contrapesos 6m",
+    "rods": 4,
+    "L": 6.0,
+    "Rf": 0.26,
+    "mat_m": 42,
+    "complexity": 4
+  },
+  {
+    "id": "ANILLO_08",
+    "type": "ANILLO",
+    "desc": "Doble anillo + contrapeso 10m",
+    "rods": 1,
+    "L": 10.0,
+    "Rf": 0.33,
+    "mat_m": 28,
+    "complexity": 3
+  },
+  {
+    "id": "ANILLO_09",
+    "type": "ANILLO",
+    "desc": "Doble anillo + 2 contrapesos 10m",
+    "rods": 2,
+    "L": 10.0,
+    "Rf": 0.28,
+    "mat_m": 38,
+    "complexity": 3
+  },
+  {
+    "id": "ANILLO_10",
+    "type": "ANILLO",
+    "desc": "Doble anillo + 3 contrapesos 10m",
+    "rods": 3,
+    "L": 10.0,
+    "Rf": 0.24,
+    "mat_m": 48,
+    "complexity": 4
+  },
+  {
+    "id": "ANILLO_11",
+    "type": "ANILLO",
+    "desc": "Doble anillo + 4 contrapesos 10m",
+    "rods": 4,
+    "L": 10.0,
+    "Rf": 0.21,
+    "mat_m": 58,
+    "complexity": 4
+  },
+  {
+    "id": "TRIADA_01",
+    "type": "TRIADA",
+    "desc": "Tríada básica lado 5m",
+    "rods": 3,
+    "L": 5.0,
+    "Rf": 0.38,
+    "mat_m": 18,
+    "complexity": 3
+  },
+  {
+    "id": "TRIADA_02",
+    "type": "TRIADA",
+    "desc": "Tríada + 1 contrapeso 5m",
+    "rods": 4,
+    "L": 5.0,
+    "Rf": 0.33,
+    "mat_m": 23,
+    "complexity": 3
+  },
+  {
+    "id": "TRIADA_03",
+    "type": "TRIADA",
+    "desc": "Tríada + 2 contrapesos 5m",
+    "rods": 5,
+    "L": 5.0,
+    "Rf": 0.29,
+    "mat_m": 28,
+    "complexity": 3
+  },
+  {
+    "id": "TRIADA_04",
+    "type": "TRIADA",
+    "desc": "Tríada + 3 contrapesos 5m",
+    "rods": 6,
+    "L": 5.0,
+    "Rf": 0.25,
+    "mat_m": 33,
+    "complexity": 4
+  }
+]

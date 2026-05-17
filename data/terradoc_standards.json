@@ -1,0 +1,48 @@
+{
+  "ieee": [
+    {
+      "code": "IEEE 80-2013",
+      "title": "IEEE Guide for Safety in AC Substation Grounding",
+      "sections_used": ["§8 (Tolerable voltages)","§11.3 (Conductor sizing)","§15 (Design current)","Appendix B (Schwarz method)"],
+      "formulas": {
+        "Ep_tolerable_70kg": "(1000 + 6·ρs)·0.116/√tf",
+        "Ec_tolerable_70kg": "(1000 + 1.5·ρs)·0.116/√tf",
+        "Ep_tolerable_50kg": "(1000 + 6·ρs)·0.157/√tf",
+        "Ec_tolerable_50kg": "(1000 + 1.5·ρs)·0.157/√tf",
+        "Ig": "If·Sf·Df",
+        "GPR": "Ig·Rg",
+        "Rg_schwarz": "ρ/(4·√(A/π)) + ρ/(L·(1+1/(1+h·√(20/A))))",
+        "conductor_Amin": "Ig·√tf / K_material"
+      },
+      "conductor_K_values": {
+        "Cu_soft": 226, "Cu_hard": 220, "Cu_tinned_30pct": 200,
+        "Al_bare": 148, "Steel_stainless": 70, "Steel_galv": 80
+      }
+    },
+    {
+      "code": "IEEE 81-2012",
+      "title": "IEEE Guide for Measuring Earth Resistivity, Ground Impedance and Earth Surface Potentials",
+      "sections_used": ["§7.3.1 (Wenner method)","§7.3.2 (Schlumberger)","§7.4 (Fall-of-potential)"],
+      "formulas": {
+        "Wenner": "ρ = 2π·a·R",
+        "Schlumberger_approx": "ρ = π·(AB/2)²·R / (MN/2)",
+        "Single_rod": "ρ = 4π·L·R / (ln(8L/d) − 1)"
+      }
+    }
+  ],
+  "latam_standards": [
+    { "code": "RETIE 2013+", "country": "CO", "full": "Reglamento Técnico de Instalaciones Eléctricas (Colombia)", "entity": "MINMINAS" },
+    { "code": "NTC 2050", "country": "CO", "full": "Norma Técnica Colombiana 2050 — Código Eléctrico Colombiano", "entity": "ICONTEC" },
+    { "code": "SEC Res. 250", "country": "CL", "full": "Reglamento de Instalaciones de Corrientes Fuertes", "entity": "SEC Chile" },
+    { "code": "NOM-001-SEDE-2012", "country": "MX", "full": "Instalaciones destinadas al suministro y uso de la energía eléctrica", "entity": "SENER México" },
+    { "code": "CNE 2011", "country": "PE", "full": "Código Nacional de Electricidad — Suministro y Utilización", "entity": "OSINERGMIN Perú" },
+    { "code": "NEC-SB-IE 2011", "country": "EC", "full": "Norma Ecuatoriana de la Construcción — Instalaciones Eléctricas", "entity": "MIDUVI Ecuador" },
+    { "code": "ABNT NBR 5410", "country": "BR", "full": "Instalações elétricas de baixa tensão", "entity": "ABNT Brasil" },
+    { "code": "ABNT NBR 14039", "country": "BR", "full": "Instalações elétricas de média tensão", "entity": "ABNT Brasil" },
+    { "code": "AEA 90364", "country": "AR", "full": "Reglamentaciones para la Ejecución de Instalaciones Eléctricas en Inmuebles", "entity": "AEA Argentina" }
+  ],
+  "iec": [
+    { "code": "IEC 60364", "title": "Low-voltage electrical installations", "relevance": "Complementary" },
+    { "code": "IEC 62561-2", "title": "Lightning protection system components — Requirements for conductors and earth electrodes", "relevance": "Electrode specifications" }
+  ]
+}

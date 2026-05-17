@@ -1,0 +1,155 @@
+{
+  "CO": {
+    "name": "Colombia", "flag": "🇨🇴",
+    "standards": ["RETIE","NTC 2050","IEEE 80","IEEE 81"],
+    "rgLimits": { "subestacion": 10, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80 §8.3", "stepMethod": "IEEE 80 §8.3",
+    "disclaimer": "Conforme al RETIE Resolución 40-2020 y NTC 2050.",
+    "validated": true, "color": "#FCD116"
+  },
+  "CL": {
+    "name": "Chile", "flag": "🇨🇱",
+    "standards": ["SEC Res. 250","RIC N°6","RPTD","IEEE 80","IEEE 81"],
+    "rgLimits": { "subestacion": 5, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80 §8", "stepMethod": "IEEE 80 §8",
+    "disclaimer": "Conforme a SEC Resolución 250 y RIC N°6.",
+    "validated": true, "color": "#D52B1E"
+  },
+  "MX": {
+    "name": "México", "flag": "🇲🇽",
+    "standards": ["NOM-001-SEDE-2012","NEC/NFPA 70","IEEE 80"],
+    "rgLimits": { "subestacion": 5, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Conforme a NOM-001-SEDE-2012.",
+    "validated": true, "color": "#006847"
+  },
+  "PE": {
+    "name": "Perú", "flag": "🇵🇪",
+    "standards": ["CNE Utilización 2011","IEEE 80"],
+    "rgLimits": { "subestacion": 10, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Conforme al CNE y Código Nacional de Electricidad.",
+    "validated": true, "color": "#D91023"
+  },
+  "EC": {
+    "name": "Ecuador", "flag": "🇪🇨",
+    "standards": ["NEC-SB-IE 2011","IEEE 80","IEEE 81"],
+    "rgLimits": { "subestacion": 10, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Conforme a NEC-SB-IE y regulación ARCONEL.",
+    "validated": true, "color": "#FFD100"
+  },
+  "PA": {
+    "name": "Panamá", "flag": "🇵🇦",
+    "standards": ["RIE Panamá","NEC/NFPA 70","IEEE 80"],
+    "rgLimits": { "subestacion": 5, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Conforme al RIE y normativa ETESA.",
+    "validated": false, "color": "#005293"
+  },
+  "BR": {
+    "name": "Brasil", "flag": "🇧🇷",
+    "standards": ["ABNT NBR 5410","ABNT NBR 14039","IEEE 80"],
+    "rgLimits": { "subestacion": 10, "apoyo": 20, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "ABNT NBR 14039", "stepMethod": "ABNT NBR 14039",
+    "disclaimer": "Conforme a ABNT NBR 5410 e NBR 14039.",
+    "validated": false, "color": "#009C3B"
+  },
+  "AR": {
+    "name": "Argentina", "flag": "🇦🇷",
+    "standards": ["AEA 90364","Reglamentación AEA","IEEE 80"],
+    "rgLimits": { "subestacion": 5, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Conforme a AEA 90364 y reglamentaciones ENRE.",
+    "validated": false, "color": "#74ACDF"
+  },
+  "BO": {
+    "name": "Bolivia", "flag": "🇧🇴",
+    "standards": ["NB 777","IEEE 80"],
+    "rgLimits": { "subestacion": 10, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Conforme a NB 777. Verificar con ENDE.",
+    "validated": false, "color": "#D32011"
+  },
+  "UY": {
+    "name": "Uruguay", "flag": "🇺🇾",
+    "standards": ["UTE Normativa","IEEE 80"],
+    "rgLimits": { "subestacion": 5, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Conforme a normativa UTE.",
+    "validated": false, "color": "#0038A8"
+  },
+  "PY": {
+    "name": "Paraguay", "flag": "🇵🇾",
+    "standards": ["ANDE Reglamento","IEEE 80"],
+    "rgLimits": { "subestacion": 10, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Conforme a reglamento ANDE.",
+    "validated": false, "color": "#D52B1E"
+  },
+  "CR": {
+    "name": "Costa Rica", "flag": "🇨🇷",
+    "standards": ["RCE 2019","IEEE 80"],
+    "rgLimits": { "subestacion": 5, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Conforme al Reglamento de Construcciones Eléctricas.",
+    "validated": false, "color": "#002B7F"
+  },
+  "GT": {
+    "name": "Guatemala", "flag": "🇬🇹",
+    "standards": ["NEC/NFPA 70 (ref.)","IEEE 80"],
+    "rgLimits": { "subestacion": 10, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Verificar con CNEE Guatemala.",
+    "validated": false, "color": "#4997D0"
+  },
+  "HN": {
+    "name": "Honduras", "flag": "🇭🇳",
+    "standards": ["NEC/NFPA 70 (ref.)","IEEE 80"],
+    "rgLimits": { "subestacion": 10, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Verificar con ENEE Honduras.",
+    "validated": false, "color": "#0073CF"
+  },
+  "SV": {
+    "name": "El Salvador", "flag": "🇸🇻",
+    "standards": ["NEC/NFPA 70 (ref.)","IEEE 80"],
+    "rgLimits": { "subestacion": 10, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Verificar con SIGET El Salvador.",
+    "validated": false, "color": "#0F47AF"
+  },
+  "DO": {
+    "name": "Rep. Dominicana", "flag": "🇩🇴",
+    "standards": ["NEC/NFPA 70 (ref.)","IEEE 80"],
+    "rgLimits": { "subestacion": 10, "apoyo": 25, "edificio": 5 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Verificar con ETED / CNE República Dominicana.",
+    "validated": false, "color": "#002D62"
+  },
+  "XX": {
+    "name": "Otro / Personalizado", "flag": "🌐",
+    "standards": ["IEEE 80","IEEE 81"],
+    "rgLimits": { "subestacion": 25, "apoyo": 25, "edificio": 25 },
+    "K70": 0.116, "K50": 0.157,
+    "touchMethod": "IEEE 80", "stepMethod": "IEEE 80",
+    "disclaimer": "Normativa personalizada. Validar con la entidad competente.",
+    "validated": false, "color": "#888"
+  }
+}

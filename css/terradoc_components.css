@@ -1,0 +1,195 @@
+/**
+ * TerraDoc SPT — terradoc_components.css
+ * Voryn Energy Platform — TerraDoc module
+ * Component-specific styles: tables, gauges, SVG viewer, cards, alerts
+ */
+
+/* ── MEASUREMENT TABLES ── */
+.meas-tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+.meas-tbl th {
+  background: var(--surface2); font-weight: 700; padding: 7px 10px;
+  text-align: left; color: var(--ink2); border-bottom: 1px solid var(--border);
+  font-size: 10px; text-transform: uppercase; letter-spacing: .5px;
+}
+.meas-tbl td { padding: 6px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.meas-tbl tr:last-child td { border-bottom: none; }
+.meas-tbl input {
+  width: 88px; padding: 4px 6px;
+  border: 1px solid var(--border2); border-radius: 3px;
+  font-family: var(--mono); font-size: 12px;
+  transition: border-color .12s;
+}
+.meas-tbl input:focus { outline: none; border-color: var(--accent); }
+.meas-tbl .rho-val { font-family: var(--mono); color: var(--accent); font-weight: 600; }
+
+/* ── SAFETY GAUGES ── */
+.gauge-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px; }
+.gauge-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--r6); padding: 14px; text-align: center;
+}
+.gauge-card h4 {
+  font-size: 10px; font-weight: 700; color: var(--ink3);
+  text-transform: uppercase; letter-spacing: .6px; margin-bottom: 10px;
+}
+.gauge-svg { display: block; margin: 0 auto; }
+.gauge-val { font-family: var(--mono); font-size: 16px; font-weight: 700; margin-top: 6px; color: var(--ink); }
+.gauge-lim { font-size: 10px; color: var(--ink4); font-family: var(--mono); margin-top: 2px; }
+
+/* ── VALIDATION TABLE ── */
+.val-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.val-table th {
+  background: var(--surface2); padding: 8px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: .5px; color: var(--ink2);
+  border-bottom: 1px solid var(--border); font-weight: 700;
+}
+.val-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.val-table tr:last-child td { border-bottom: none; }
+.val-bar-wrap { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; display: inline-block; width: 80px; vertical-align: middle; margin-right: 6px; }
+.val-bar { height: 100%; border-radius: 3px; transition: width .4s; }
+
+/* ── ALT TABLE ROWS ── */
+.rec-row td { background: #e8f4ee; }
+.fail-row td { background: #fff5f5; }
+
+/* ── SVG VIEWER ── */
+.svg-panel {
+  background: #fafaf9; border: 1px solid var(--border);
+  border-radius: var(--r6); overflow: hidden;
+}
+.svg-toolbar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px; background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+.svg-toolbar h3 { font-size: 12px; font-weight: 600; color: var(--ink); flex: 1; font-family: var(--mono); }
+.svg-body {
+  overflow: auto; display: flex; align-items: center;
+  justify-content: center; padding: 14px; min-height: 200px;
+}
+.svg-body svg { max-width: 100%; height: auto; transform-origin: center; transition: transform .2s; }
+
+/* ── COUNTRY MODAL ── */
+#country-modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,.55);
+  display: none; align-items: center; justify-content: center;
+  z-index: 999; backdrop-filter: blur(3px);
+}
+#country-modal.open { display: flex; }
+.country-modal-card {
+  background: #fff; border-radius: var(--r8);
+  padding: 24px; width: 480px; max-width: 95vw; max-height: 80vh;
+  overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+.country-modal-card h2 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 14px; }
+.country-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: 5px; cursor: pointer;
+  border: 1px solid var(--border); margin-bottom: 5px;
+  transition: all .15s;
+}
+.country-item:hover { border-color: var(--accent); background: var(--accent-l); }
+.country-item.selected { border-color: var(--accent); background: var(--accent-l); }
+.country-flag { font-size: 18px; flex-shrink: 0; }
+.country-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.country-norms { font-size: 10.5px; color: var(--ink3); }
+
+/* ── PROGRESS OVERLAY ── */
+#progress-overlay {
+  position: fixed; inset: 0; background: rgba(12,15,20,.7);
+  display: none; align-items: center; justify-content: center;
+  z-index: 1000; backdrop-filter: blur(4px);
+}
+#progress-overlay.show { display: flex; }
+.progress-card {
+  background: #fff; border-radius: var(--r8);
+  padding: 28px 36px; min-width: 340px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+}
+.pc-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.progress-bar-wrap { height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 14px; overflow: hidden; }
+.progress-bar { height: 100%; background: var(--accent); border-radius: 2px; transition: width .35s ease; }
+.pc-step { font-size: 12px; color: var(--ink3); font-family: var(--mono); }
+
+/* ── NORM TAGS ── */
+.norm-tag {
+  display: inline-block; font-size: 11px; font-family: var(--mono);
+  padding: 2px 8px; border-radius: 3px;
+  background: var(--accent-l); color: var(--accent);
+  border: 1px solid #a7d5bc; margin-right: 4px; margin-bottom: 4px;
+}
+
+/* ── MATERIAL TABLE ── */
+.mat-qty { font-family: var(--mono); font-weight: 700; font-size: 14px; color: var(--ink); }
+
+/* ── REPORT PREVIEW ── */
+.report-preview {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--r6); padding: 28px;
+  max-width: 700px; margin: 0 auto;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.report-preview .rp-cover {
+  text-align: center; border-bottom: 2px solid var(--accent);
+  padding-bottom: 16px; margin-bottom: 18px;
+}
+.report-preview .rp-norm { font-family: var(--mono); font-size: 10px; color: var(--ink3); margin-bottom: 6px; }
+.report-preview .rp-type { font-size: 20px; font-weight: 700; color: var(--ink); }
+.report-preview .rp-proj { font-size: 15px; font-weight: 600; color: var(--accent); margin-top: 4px; }
+.disclaimer {
+  background: var(--surface2); border: 1px solid var(--border2);
+  border-radius: 4px; padding: 12px 14px;
+  font-size: 11px; color: var(--ink3); line-height: 1.6;
+}
+
+/* ── STEPPER ── */
+#stepper {
+  display: flex; align-items: center; padding: 0 20px;
+  height: 40px; background: var(--surface2);
+  border-bottom: 1px solid var(--border); gap: 0;
+  flex-shrink: 0; overflow-x: auto;
+}
+.step {
+  display: flex; align-items: center; gap: 5px; padding: 4px 9px;
+  border-radius: 3px; font-size: 11px; color: var(--ink4);
+  cursor: pointer; white-space: nowrap; transition: all .15s;
+  font-family: var(--mono);
+}
+.step:hover { color: var(--ink2); }
+.step-n {
+  width: 17px; height: 17px; border-radius: 50%;
+  background: var(--border2); display: flex; align-items: center;
+  justify-content: center; font-size: 9px; font-weight: 700;
+  color: #fff; flex-shrink: 0; transition: all .2s;
+}
+.step.done .step-n { background: var(--accent); }
+.step.done { color: var(--ink3); }
+.step.active { color: var(--accent); font-weight: 600; }
+.step.active .step-n { background: var(--accent); box-shadow: 0 0 0 3px var(--accent-l); }
+.step-sep { width: 22px; height: 1px; background: var(--border); flex-shrink: 0; transition: background .3s; }
+.step-sep.done { background: var(--accent-t); }
+
+/* ── EVIDENCE DROPZONE ── */
+.dropzone {
+  border: 2px dashed var(--border2); border-radius: var(--r6);
+  padding: 28px; text-align: center; cursor: pointer;
+  color: var(--ink3); transition: all .15s;
+}
+.dropzone:hover { border-color: var(--accent-t); background: var(--accent-l); }
+.img-thumb {
+  display: inline-block; width: 120px; vertical-align: top;
+  margin: 4px;
+}
+.img-thumb img {
+  width: 120px; height: 80px; object-fit: cover;
+  border-radius: 5px; border: 1px solid var(--border);
+}
+.img-thumb .img-name {
+  font-size: 10px; color: var(--ink3); margin-top: 3px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+/* ── FILTER BUTTONS ── */
+.filter-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+.filter-label { font-size: 11px; color: var(--ink3); font-family: var(--mono); }

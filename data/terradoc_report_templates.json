@@ -1,0 +1,82 @@
+{
+  "version": "1.0",
+  "product": "TerraDoc SPT",
+  "voryn_module": "terradoc",
+  "templates": [
+    {
+      "id": "completo",
+      "label": "Informe completo SPT",
+      "icon": "📁",
+      "description": "Portada + resistividad + modelo suelo + cálculos IEEE 80 + configuración SVG + materiales + validaciones + disclaimer normativo.",
+      "sections": ["portada","datos_proyecto","metodologia","mediciones","modelo_suelo","calculos_ieee80","seguridad_electrica","configuracion_spt","materiales","evidencias","conclusiones","disclaimer"],
+      "export_formats": ["docx","pdf","json"],
+      "backend_required": true,
+      "estimated_pages": "8-15"
+    },
+    {
+      "id": "resistividad",
+      "label": "Informe de resistividad",
+      "icon": "📊",
+      "description": "Mediciones Wenner/Schlumberger/varilla, estadísticas, perfil de resistividad, clasificación del terreno.",
+      "sections": ["portada","mediciones","estadisticas","clasificacion_terreno","modelo_suelo","conclusiones"],
+      "export_formats": ["docx","pdf"],
+      "backend_required": true,
+      "estimated_pages": "4-6"
+    },
+    {
+      "id": "memoria",
+      "label": "Memoria de cálculo SPT",
+      "icon": "🧮",
+      "description": "Cálculos IEEE 80-2013 completos, configuración seleccionada con SVG, cantidades de material y validaciones.",
+      "sections": ["portada","parametros_red","calculos_ieee80","configuracion_spt","materiales","validaciones"],
+      "export_formats": ["docx","pdf"],
+      "backend_required": true,
+      "estimated_pages": "5-8"
+    },
+    {
+      "id": "comparador",
+      "label": "Comparador de alternativas",
+      "icon": "⚖",
+      "description": "Tabla comparativa de las 25 configuraciones SPT evaluadas con Rg, tensiones, materiales y justificación.",
+      "sections": ["tabla_alternativas","criterio_seleccion","configuracion_recomendada"],
+      "export_formats": ["docx","json"],
+      "backend_required": false,
+      "estimated_pages": "3-4"
+    },
+    {
+      "id": "json",
+      "label": "JSON técnico trazable",
+      "icon": "{}",
+      "description": "Salida estructurada con todos los parámetros de diseño para auditoría, integración y verificación.",
+      "sections": ["all_data"],
+      "export_formats": ["json"],
+      "backend_required": false,
+      "estimated_pages": null
+    },
+    {
+      "id": "custom",
+      "label": "Personalizado",
+      "icon": "✏",
+      "description": "Seleccione las secciones específicas a incluir en el documento.",
+      "sections": "user_defined",
+      "export_formats": ["docx","pdf","json"],
+      "backend_required": true,
+      "estimated_pages": "variable",
+      "status": "PENDIENTE IMPLEMENTACIÓN"
+    }
+  ],
+  "disclaimer_base": "Este documento fue generado con TerraDoc SPT — plataforma de apoyo técnico para el diseño de sistemas de puesta a tierra. La verificación in situ, validación final y firma son responsabilidad exclusiva del profesional competente habilitado conforme a la normativa vigente en cada jurisdicción.",
+  "report_header": {
+    "product": "TerraDoc SPT",
+    "company": "Voryn Energy",
+    "standard_primary": "IEEE 80-2013",
+    "standard_measurement": "IEEE 81-2012",
+    "logo_path": "assets/logos/terradoc_logo.svg"
+  },
+  "backend_endpoints": {
+    "generate_docx": "POST /api/terradoc/reports/docx",
+    "generate_pdf": "POST /api/terradoc/reports/pdf",
+    "generate_json": "GET /api/terradoc/reports/json",
+    "note": "Endpoints defined for Voryn Energy production backend (NestJS)"
+  }
+}

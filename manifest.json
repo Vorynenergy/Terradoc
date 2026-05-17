@@ -1,0 +1,116 @@
+{
+  "name": "TerraDoc SPT",
+  "short_name": "TerraDoc",
+  "description": "Plataforma profesional LATAM para diseño, validación y documentación de Sistemas de Puesta a Tierra (SPT). IEEE 80-2013 | IEEE 81-2012.",
+  "version": "3.0.0",
+  "version_date": "2025-05",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0f14",
+  "theme_color": "#0f4c35",
+  "lang": "es",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+
+  "product": {
+    "name": "TerraDoc SPT",
+    "type": "Engineering SaaS — Electrical Grounding Design",
+    "target_market": "LATAM professional electrical engineers",
+    "category": "utility-grade technical software"
+  },
+
+  "technical_standards": [
+    "IEEE 80-2013 — Guide for Safety in AC Substation Grounding",
+    "IEEE 81-2012 — Guide for Measuring Earth Resistivity",
+    "RETIE 2013 (Colombia)",
+    "SEC Res. 250 / RIC N°6 (Chile)",
+    "NOM-001-SEDE-2012 (México)",
+    "CNE 2011 (Perú)",
+    "NEC-SB-IE 2011 (Ecuador)",
+    "ABNT NBR 5410 / NBR 14039 (Brasil)",
+    "AEA 90364 (Argentina)"
+  ],
+
+  "modules": {
+    "measurements": {
+      "file": "js/measurements.js",
+      "methods": ["Wenner (IEEE 81 §7.3.1)", "Schlumberger-Palmer (IEEE 81 §7.3.2)", "Single-rod (IEEE 81 §7.4)"]
+    },
+    "soil_model": {
+      "file": "js/soil-model.js",
+      "models": ["Homogeneous", "Two-layer Sunde approximation"]
+    },
+    "ieee80_calculations": {
+      "file": "js/ieee80-calculations.js",
+      "calculations": ["Tolerable step voltage Ep", "Tolerable touch voltage Ec", "Design current Ig", "GPR", "Schwarz Rg", "Conductor thermal sizing"]
+    },
+    "safety_validation": {
+      "file": "js/safety-validation.js",
+      "validations": ["Rg vs normative limit", "GPR vs Ep", "Touch voltage vs Ec", "Step voltage vs Ep", "Thermal conductor"]
+    },
+    "spt_alternatives": {
+      "file": "js/spt-alternatives.js",
+      "configurations": 25,
+      "types": ["VARILLA (×10)", "ANILLO (×11)", "TRIADA (×4)"]
+    },
+    "svg_renderer": {
+      "file": "js/svg-renderer.js",
+      "assets": 25,
+      "features": ["Inline SVG catalog", "Zoom control", "Parametric mesh generator (IEEE 80 App. B)"]
+    },
+    "materials": {
+      "file": "js/materials.js",
+      "items": 12
+    },
+    "checker": {
+      "file": "js/checker.js",
+      "rules": 10,
+      "codes": ["CHK-001 through CHK-010"],
+      "blocking": true
+    },
+    "reports": {
+      "file": "js/reports.js",
+      "formats": ["DOCX (requires backend)", "PDF (requires backend)", "JSON (client-side)"]
+    }
+  },
+
+  "data_files": {
+    "countries": "data/countries.json",
+    "spt_configurations": "data/spt-configurations.json",
+    "svg_catalog": "data/svg-catalog.json",
+    "standards": "data/standards.json",
+    "soil_classification": "data/soil-classification.json",
+    "materials_catalog": "data/materials-catalog.json"
+  },
+
+  "latam_countries": 17,
+  "latam_codes": ["CO","CL","MX","PE","EC","PA","BR","AR","BO","UY","PY","CR","GT","HN","SV","DO","XX"],
+
+  "backend_required": {
+    "docx_export": true,
+    "pdf_export": true,
+    "json_export": false,
+    "authentication": false,
+    "database": false,
+    "recommended_stack": "NestJS + docxtemplater + Puppeteer"
+  },
+
+  "offline_capability": {
+    "calculations": true,
+    "svg_rendering": true,
+    "json_export": true,
+    "docx_pdf_export": false,
+    "note": "All engineering calculations work offline. DOCX/PDF require backend server."
+  },
+
+  "external_dependencies": [
+    {
+      "name": "Google Fonts (DM Mono, DM Sans, Sora)",
+      "url": "https://fonts.googleapis.com",
+      "critical": false,
+      "offline_fallback": "System monospace/sans-serif"
+    }
+  ]
+}

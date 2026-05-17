@@ -1,0 +1,121 @@
+{
+  "version": "1.0",
+  "updated": "2025-01",
+  "currency": "USD",
+  "materials": [
+    {
+      "id": "ROD-58",
+      "category": "electrodes",
+      "desc": "Varilla copperweld 5/8\" × 2.40 m (Cu-clad steel)",
+      "unit": "UN",
+      "spec": "ASTM B227 / UL467 / IEC 62561-2",
+      "notes": "Electrodo vertical principal. Diámetro nominal 15.87 mm.",
+      "base_qty_per_rod": 1
+    },
+    {
+      "id": "COND-CU35",
+      "category": "conductor",
+      "desc": "Conductor Cu desnudo cableado 7 hilos 35 mm²",
+      "unit": "m",
+      "spec": "ASTM B3/B8 / IEC 60228",
+      "notes": "Conductor enterrado para anillos y contrapesos."
+    },
+    {
+      "id": "COND-BAJANTE",
+      "category": "conductor",
+      "desc": "Bajante Cu desnudo 35 mm² (sobre superficie)",
+      "unit": "m",
+      "spec": "ASTM B3/B8",
+      "notes": "Bajante desde estructura/equipo hasta SPT. Mín. 8 m por electrodo."
+    },
+    {
+      "id": "CONN-AB58",
+      "category": "connectors",
+      "desc": "Conector mecánico tipo AB varilla 5/8\" para bajante",
+      "unit": "UN",
+      "spec": "UL467 / IEC 62561",
+      "notes": "Unión bajante-varilla en cabeza de varilla."
+    },
+    {
+      "id": "WELD-CU-CU",
+      "category": "welding",
+      "desc": "Soldadura exotérmica CAD-WELD 115/150 (Cu-Cu)",
+      "unit": "UN",
+      "spec": "ERICO CADWELD / THERMOWELD",
+      "notes": "Uniones conductor-varilla y cruce de conductores."
+    },
+    {
+      "id": "CLAMP-SS",
+      "category": "hardware",
+      "desc": "Grapa de fijación bajante Cu (acero inox. SS304)",
+      "unit": "UN",
+      "spec": "SS304",
+      "notes": "Cada 2 m de bajante sobre superficie."
+    },
+    {
+      "id": "EXC-MAN",
+      "category": "civil",
+      "desc": "Excavación manual zanja h=0.5 m × 0.3 m",
+      "unit": "m",
+      "spec": "Manual / retroexcavadora",
+      "notes": "Para conductor enterrado."
+    },
+    {
+      "id": "FILL-GRAN",
+      "category": "civil",
+      "desc": "Material granular fino relleno (grava lavada < 5 mm)",
+      "unit": "m³",
+      "spec": "Grava lavada limpia",
+      "notes": "Compactación y protección conductor. 0.5×0.3 m²/m lineal."
+    },
+    {
+      "id": "BENT-SOD",
+      "category": "treatment",
+      "desc": "Bentonita sódica / electrolito ERICO GEM compuesto",
+      "unit": "kg",
+      "spec": "ERICO GEM / MagnaDense / equiv.",
+      "notes": "Tratamiento de suelo alta resistividad. Requerido si Rf>0.4."
+    },
+    {
+      "id": "COKE-COND",
+      "category": "treatment",
+      "desc": "Cemento conductivo COKE BREEZE",
+      "unit": "kg",
+      "spec": "ERICO Coke Breeze / equiv.",
+      "notes": "Reducción adicional de Rg. Requerido si ρ>500 Ω·m."
+    },
+    {
+      "id": "TAPE-SIGNAL",
+      "category": "signaling",
+      "desc": "Cinta señalización subterránea amarilla 100 mm",
+      "unit": "m",
+      "spec": "PE UV-estabilizado",
+      "notes": "\"Puesta a Tierra\" — instalada 0.3 m sobre conductor."
+    },
+    {
+      "id": "PLATE-ID",
+      "category": "signaling",
+      "desc": "Placa identificación SPT (acero inox. 200×100 mm)",
+      "unit": "UN",
+      "spec": "SS316",
+      "notes": "Rotulación punto de inspección."
+    },
+    {
+      "id": "EPOXY-SEAL",
+      "category": "hardware",
+      "desc": "Resina epoxi sellado conector aéreo",
+      "unit": "KIT",
+      "spec": "3M Scotchcast / equiv.",
+      "notes": "Sellado anti-corrosión conexión bajante-electrodo."
+    }
+  ],
+  "quantity_rules": {
+    "bajante_min_m_per_rod": 3,
+    "clamp_spacing_m": 2,
+    "fill_section_m2": 0.15,
+    "coke_threshold_rho": 500,
+    "bentonite_threshold_rf": 0.4,
+    "bentonite_kg_per_rod": 25,
+    "coke_kg_per_rod": 50
+  }
+}

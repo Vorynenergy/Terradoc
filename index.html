@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TerraDoc SPT — Plataforma profesional LATAM para diseño de Sistemas de Puesta a Tierra. IEEE 80-2013, IEEE 81-2012.">
+<meta name="product" content="TerraDoc SPT">
+<meta name="module" content="Voryn Energy — terradoc">
+<meta name="version" content="1.0.0">
+<meta name="theme-color" content="#0c0f14">
+<title>TerraDoc SPT — Plataforma LATAM de Ingeniería Eléctrica</title>
+<link rel="manifest" href="manifest.json">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/terradoc_main.css">
+<link rel="stylesheet" href="css/terradoc_responsive.css">
+<link rel="stylesheet" href="css/terradoc_components.css">
+<link rel="stylesheet" href="css/terradoc_print.css">
+</head>
+<body>
+<!-- PROGRESS OVERLAY -->
+<div id="progress-overlay">
+  <div class="progress-card">
+    <div class="pc-title" id="prog-title">Calculando...</div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="prog-bar"></div></div>
+    <div class="progress-step" id="prog-step">Iniciando...</div>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M8 2v12M3 8h10" stroke="#4db87a" stroke-width="2.5" stroke-linecap="round"/><circle cx="8" cy="8" r="3" stroke="#4db87a" stroke-width="1.5"/></svg>
+    </div>
+    <span class="brand-name">TerraDoc</span>
+  </div>
+  <div class="sep"></div>
+  <div class="country-pill" onclick="openCountrySelector()">
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 2C6 4 5 6 5 8s1 4 3 6M8 2c2 2 3 4 3 6s-1 4-3 6M2 8h12"/></svg>
+    País: <span id="country-display">Colombia</span>
+  </div>
+  <div class="norm-tags" id="norm-tags">
+    <span class="norm-tag">RETIE</span>
+    <span class="norm-tag">IEEE 80</span>
+    <span class="norm-tag">IEEE 81</span>
+    <span class="norm-tag">NTC</span>
+  </div>
+  <span class="version-tag">v3.0.0-pro</span>
+</div>
+
+<div id="shell">
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="nav-grp">Proyecto</div>
+  <div class="nav-item active" data-sec="proyecto" onclick="showSection('proyecto')">
+    <svg class="ni" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 5h6M5 8h6M5 11h4"/></svg>
+    Datos generales
+  </div>
+  <div class="nav-item" data-sec="mediciones" onclick="showSection('mediciones')">
+    <svg class="ni" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L5 8l3 4 3-6 3-3"/></svg>
+    Mediciones ρ
+  </div>
+  <div class="nav-item" data-sec="suelo" onclick="showSection('suelo')">
+    <svg class="ni" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="8" cy="12" rx="6" ry="2"/><path d="M2 12V8Q8 4 14 8v4"/></svg>
+    Modelo de suelo
+  </div>
+  <div class="nav-grp">Ingeniería SPT</div>
+  <div class="nav-item" data-sec="calculos" onclick="showSection('calculos')">
+    <svg class="ni" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h8M4 8h8M4 12h4"/><rect x="1" y="1" width="14" height="14" rx="2"/></svg>
+    Cálculos IEEE 80
+  </div>
+  <div class="nav-item" data-sec="seguridad" onclick="showSection('seguridad')">
+    <svg class="ni" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L3 4v5c0 3 2.5 5 5 6 2.5-1 5-3 5-6V4L8 2z"/></svg>
+    Seguridad eléctrica
+  </div>
+  <div class="nav-item" data-sec="alternativas" onclick="showSection('alternativas')">
+    <svg class="ni" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M5 8h6M8 5v6"/></svg>
+    Alternativas SPT
+    <span class="nav-badge">25</span>
+  </div>
+  <div class="nav-item" data-sec="materiales" onclick="showSection('materiales')">
+    <svg class="ni" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14L8 2l6 12H2z"/><path d="M5 10h6"/></svg>
+    Cantidades
+  </div>
+  <div class="nav-grp">Documentación</div>
+  <div class="nav-item" data-sec="evidencias" onclick="showSection('evidencias')">
+    <svg class="ni" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><circle cx="6" cy="7" r="1.5"/><path d="M2 11l3-3 3 3 2-2 4 3"/></svg>
+    Evidencias
+  </div>
+  <div class="nav-item" data-sec="reporte" onclick="showSection('reporte')">
+    <svg class="ni" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="1" width="10" height="14" rx="1"/><path d="M6 5h4M6 8h4M6 11h2"/></svg>
+    Generar documento
+  </div>
+  <div class="nav-item" data-sec="checker" onclick="showSection('checker')">
+    <svg class="ni" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l3 3 7-7"/><circle cx="8" cy="8" r="6"/></svg>
+    Consistency Checker
+    <span class="nav-badge" id="nb-checker" style="background:#991b1b">10</span>
+  </div>
+
+  <!-- SPT SELECTOR -->
+  <div class="spt-selector">
+    <div class="spt-pill">
+      <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/></svg>
+      SPT-01 — Activo
+    </div>
+    <div class="spt-add" onclick="alertPremium('Multi-SPT')">
+      <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg>
+      Agregar SPT
+      <span class="badge info" style="margin-left:auto;font-size:9px">PRO</span>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div id="main">
+
+  <!-- HEADER BAR -->
+  <div id="header-bar">
+    <span class="proj-name" id="ph-name">Nuevo proyecto</span>
+    <div class="proj-meta">
+      <span class="meta-chip">País: <b id="ph-pais">—</b></span>
+      <span class="meta-chip">Tensión: <b id="ph-tension">—</b></span>
+      <span class="meta-chip">Rev: <b id="ph-rev">00</b></span>
+    </div>
+    <button class="run-btn" onclick="runAll()">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="4,2 14,8 4,14" fill="white"/></svg>
+      Calcular todo
+    </button>
+  </div>
+
+  <!-- STEPPER -->
+  <div id="stepper">
+    <div class="step done" id="st0"><div class="sn">1</div>Datos</div>
+    <div class="step-line" id="sl0"></div>
+    <div class="step" id="st1"><div class="sn">2</div>Medic.</div>
+    <div class="step-line" id="sl1"></div>
+    <div class="step" id="st2"><div class="sn">3</div>Suelo</div>
+    <div class="step-line" id="sl2"></div>
+    <div class="step" id="st3"><div class="sn">4</div>Cálculos</div>
+    <div class="step-line" id="sl3"></div>
+    <div class="step" id="st4"><div class="sn">5</div>Seguridad</div>
+    <div class="step-line" id="sl4"></div>
+    <div class="step" id="st5"><div class="sn">6</div>Alternativas</div>
+    <div class="step-line" id="sl5"></div>
+    <div class="step" id="st6"><div class="sn">7</div>Documento</div>
+  </div>
+
+  <!-- CONTENT AREA -->
+  <div id="content-area">
+
+  <!-- ═══════ PAÍS SELECTOR MODAL ═══════ -->
+  <div id="country-modal" style="display:none;position:fixed;inset:0;background:rgba(12,15,20,.6);z-index:500;align-items:center;justify-content:center">
+    <div style="background:#fff;border-radius:8px;padding:24px;width:420px;max-height:80vh;overflow-y:auto">
+      <div style="font-family:var(--display);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:14px">Seleccionar país y normativa</div>
+      <div id="country-list"></div>
+      <div class="btn-row" style="margin-top:16px"><button class="btn sm" onclick="document.getElementById('country-modal').style.display='none'">Cerrar</button></div>
+    </div>
+  </div>
+
+  <!-- ═══════ PROYECTO ═══════ -->
+  <div id="sec-proyecto">
+    <div class="sec-title">Datos del Proyecto</div>
+    <div class="sec-sub">Información general para el informe técnico. Todos los campos son opcionales para iniciar los cálculos.</div>
+
+    <div style="margin-bottom:12px">
+      <div class="alert info"><span class="ai">🌎</span><div><strong>Plataforma LATAM — 17 países</strong>Seleccione el país en la barra superior para aplicar la normativa correspondiente automáticamente.</div></div>
+    </div>
+
+    <div class="form-grid" style="margin-bottom:14px">
+      <div class="field"><label>Nombre del proyecto</label><input id="f-nombre" type="text" placeholder="Ej: Subestación San Pedro MT/BT" oninput="syncHeader()"></div>
+      <div class="field"><label>Empresa / Contratante</label><input id="f-empresa" type="text" placeholder="Ej: Distribuidora Regional S.A."></div>
+      <div class="field"><label>Ciudad / Municipio</label><input id="f-city" type="text" placeholder="Ciudad de ubicación"></div>
+      <div class="field"><label>Departamento / Estado / Región</label><input id="f-dpto" type="text" placeholder="Departamento o estado"></div>
+      <div class="field"><label>Nivel de tensión</label>
+        <select id="f-tension" onchange="syncHeader()">
+          <option value="">— Seleccionar —</option>
+          <option>BT ≤ 1 kV</option><option>13.2 kV</option><option>34.5 kV</option>
+          <option>66 kV</option><option>115 kV</option><option>220 kV</option><option>500 kV</option>
+        </select>
+      </div>
+      <div class="field"><label>Tipo de instalación</label>
+        <select id="f-tipo">
+          <option value="">— Seleccionar —</option>
+          <option>Subestación MT/BT</option><option>Apoyo línea MT</option>
+          <option>Subestación AT</option><option>Centro de distribución</option>
+          <option>Parque solar</option><option>Edificio industrial</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-grid" style="margin-bottom:14px">
+      <div class="field"><label>Operador de red / Empresa distribuidora</label><input id="f-or" type="text" placeholder="Nombre del operador o empresa"></div>
+      <div class="field"><label>Código / Referencia del proyecto</label><input id="f-codigo" type="text" placeholder="Ej: SPT-2025-001"></div>
+    </div>
+
+    <hr class="sec-sep">
+    <div class="sec-title" style="font-size:14px;margin-bottom:10px">Responsable técnico</div>
+    <div class="form-grid g3">
+      <div class="field"><label>Nombre completo</label><input id="f-prof" type="text" placeholder="Ing. Nombre Apellido"></div>
+      <div class="field"><label>Matrícula profesional</label><input id="f-matricula" type="text" placeholder="Número de matrícula"></div>
+      <div class="field"><label>Correo electrónico</label><input id="f-email" type="email" placeholder="correo@empresa.co"></div>
+    </div>
+
+    <hr class="sec-sep">
+    <div class="sec-title" style="font-size:14px;margin-bottom:10px">Control documental</div>
+    <div class="form-grid g3">
+      <div class="field"><label>Revisión</label><input id="f-rev" type="text" value="00" oninput="syncHeader()"></div>
+      <div class="field"><label>Fecha</label><input id="f-fecha" type="date"></div>
+      <div class="field"><label>Estado</label>
+        <select id="f-estado"><option>Borrador</option><option>Para revisión</option><option>Aprobado</option><option>Emitido</option></select>
+      </div>
+    </div>
+
+    <div style="margin-bottom:12px">
+      <div style="font-size:11px;color:var(--ink3);margin-bottom:7px;font-weight:600">Plantillas de proyecto demo (datos ficticios):</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button class="btn xs" onclick="loadDemo('solar')">☀ Planta solar 1 MWp</button>
+        <button class="btn xs" onclick="loadDemo('subest')">⚡ Subestación MT/BT</button>
+        <button class="btn xs" onclick="loadDemo('linea')">〰 Apoyo línea MT</button>
+        <button class="btn xs" onclick="loadDemo('edificio')">🏗 Edificio industrial</button>
+        <button class="btn xs" onclick="loadDemo('datacenter')">💻 Data center</button>
+        <button class="btn xs" onclick="clearAllFields()" style="color:var(--danger);border-color:var(--danger)">✕ Limpiar todo</button>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn primary" onclick="showSection('mediciones');markStep(1)">Continuar → Mediciones</button>
+    </div>
+
+    <div id="country-info-box" style="margin-top:14px"></div>
+  </div>
+
+  <!-- ═══════ MEDICIONES ═══════ -->
+  <div id="sec-mediciones" style="display:none">
+    <div class="sec-title">Mediciones de Resistividad</div>
+    <div class="sec-sub">Ingrese lecturas de campo para calcular ρ automáticamente.</div>
+
+    <div class="tab-bar">
+      <div class="tab active" id="tab-wenner" onclick="switchMeasTab('wenner')">Wenner (ρ = 2πaR)</div>
+      <div class="tab" id="tab-schlum" onclick="switchMeasTab('schlum')">Schlumberger-Palmer</div>
+      <div class="tab" id="tab-varilla" onclick="switchMeasTab('varilla')">Método una varilla</div>
+    </div>
+
+    <!-- WENNER -->
+    <div id="meas-wenner">
+      <div class="alert info"><span class="ai">ℹ</span><div><strong>Método Wenner — 4 electrodos equidistantes</strong>ρ = 2πaR (Ω·m). La separación a define la profundidad de investigación ≈ a/2.</div></div>
+      <div style="display:flex;gap:12px;margin-bottom:10px">
+        <div class="field" style="flex:1"><label>Eje / punto</label><input id="w-punto" type="text" placeholder="Ej: Eje longitudinal P-1"></div>
+        <div class="field" style="width:160px"><label>Profundidad máx (m)</label><input id="w-depth" type="number" value="8" step="1"></div>
+      </div>
+      <div class="tbl-wrap">
+        <table class="meas-tbl" id="wenner-table">
+          <thead><tr><th>a (m)</th><th>R medida (Ω)</th><th>ρ calculada (Ω·m)</th><th>Clasificación suelo</th></tr></thead>
+          <tbody id="wenner-body"></tbody>
+        </table>
+      </div>
+      <div class="btn-row"><button class="btn sm" onclick="addWennerRow()">+ Separación</button></div>
+    </div>
+
+    <!-- SCHLUMBERGER -->
+    <div id="meas-schlum" style="display:none">
+      <div class="alert info"><span class="ai">ℹ</span><div><strong>Schlumberger-Palmer — Sondeo eléctrico vertical</strong>ρ = π·(AB/2)²/MN · R (Ω·m). Permite mayor profundidad de investigación.</div></div>
+      <div class="tbl-wrap">
+        <table class="meas-tbl" id="schlum-table">
+          <thead><tr><th>AB/2 (m)</th><th>MN/2 (m)</th><th>R medida (Ω)</th><th>ρ calculada (Ω·m)</th></tr></thead>
+          <tbody id="schlum-body"></tbody>
+        </table>
+      </div>
+      <div class="btn-row"><button class="btn sm" onclick="addSchlumRow()">+ Sondeo</button></div>
+    </div>
+
+    <!-- UNA VARILLA -->
+    <div id="meas-varilla" style="display:none">
+      <div class="alert info"><span class="ai">ℹ</span><div><strong>Método una varilla (Fall of Potential)</strong>ρ = 4πLR/(ln(8L/d)−1) (Ω·m). Medición directa con una sola varilla.</div></div>
+      <div class="form-grid" style="margin-bottom:14px">
+        <div class="field"><label>Longitud varilla L (m)</label><input id="v1-L" type="number" value="2.40" step="0.01" oninput="calcVarilla1()"></div>
+        <div class="field"><label>Diámetro varilla d (m)</label><input id="v1-d" type="number" value="0.016" step="0.001" oninput="calcVarilla1()"></div>
+        <div class="field"><label>R medida (Ω)</label><input id="v1-R" type="number" step="0.01" placeholder="Lectura directa" oninput="calcVarilla1()"></div>
+        <div class="field"><label>ρ calculada (Ω·m)</label><input id="v1-rho" type="text" readonly placeholder="—"></div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <hr class="sec-sep">
+    <div class="card-grid g3" style="margin-bottom:14px">
+      <div class="card">
+        <h3>Estadísticas</h3>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--ink3)">ρ promedio</span><span class="rho-val" id="s-avg">—</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--ink3)">ρ mínima</span><span style="font-family:var(--mono)" id="s-min">—</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--ink3)">ρ máxima</span><span style="font-family:var(--mono)" id="s-max">—</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--ink3)">CV%</span><span style="font-family:var(--mono)" id="s-cv">—</span></div>
+        </div>
+      </div>
+      <div class="card" style="grid-column:span 2">
+        <h3>Clasificación del terreno</h3>
+        <div id="soil-class-box"></div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn primary" onclick="showSection('suelo');markStep(2)">Continuar → Modelo de suelo</button>
+    </div>
+  </div>
+
+  <!-- ═══════ SUELO ═══════ -->
+  <div id="sec-suelo" style="display:none">
+    <div class="sec-title">Modelo de Suelo</div>
+    <div class="sec-sub">Parámetros para el cálculo SPT según IEEE 80 / IEEE 81.</div>
+
+    <div class="form-grid" style="margin-bottom:14px">
+      <div class="field"><label>Tipo de modelo</label>
+        <select id="soil-type" onchange="toggleSoilModel()">
+          <option value="hom">Suelo homogéneo</option>
+          <option value="dc">Suelo dos capas</option>
+        </select>
+      </div>
+      <div class="field"><label>Profundidad de estudio (m)</label><input id="soil-depth" type="number" value="8" step="0.5"></div>
+    </div>
+
+    <div id="soil-hom">
+      <div class="form-grid">
+        <div class="field"><label>ρ equivalente (Ω·m)</label><input id="rho-eq" type="number" value="" placeholder="Del análisis de mediciones" oninput="updateRhoEq()"></div>
+      </div>
+    </div>
+    <div id="soil-dc" style="display:none">
+      <div class="form-grid g3">
+        <div class="field"><label>ρ₁ — Capa superficial (Ω·m)</label><input id="rho1" type="number" placeholder="ρ capa superior"></div>
+        <div class="field"><label>h₁ — Espesor capa 1 (m)</label><input id="h1" type="number" placeholder="Espesor"></div>
+        <div class="field"><label>ρ₂ — Capa profunda (Ω·m)</label><input id="rho2" type="number" placeholder="ρ capa inferior"></div>
+      </div>
+      <div class="field" style="margin-top:10px;max-width:280px"><label>ρ equivalente calculada (Ω·m)</label><input id="rho-dc-eq" type="text" readonly placeholder="—"></div>
+    </div>
+
+    <hr class="sec-sep">
+    <div class="sec-title" style="font-size:14px;margin-bottom:10px">Parámetros de red eléctrica</div>
+    <div class="form-grid g3">
+      <div class="field"><label>Corriente de falla If (kA)</label><input id="If" type="number" value="" placeholder="kA de cortocircuito" step="0.1" oninput="updateId()"></div>
+      <div class="field"><label>Factor de división de corriente Sf</label><input id="Sf" type="number" value="1.0" step="0.05" oninput="updateId()"><div class="hint">Fracción que circula por la puesta a tierra</div></div>
+      <div class="field"><label>Factor de decremento Df</label><input id="Df" type="number" value="1.0" step="0.01" oninput="updateId()"></div>
+      <div class="field"><label>Corriente de diseño Ig (A)</label><input id="Ig" type="number" readonly placeholder="If × Sf × Df × 1000"><div class="hint">IEEE 80 §15: Ig = If·Sf·Df</div></div>
+      <div class="field"><label>Tiempo de despeje tf (s)</label><input id="tf" type="number" value="" placeholder="Ej: 0.5" step="0.05"></div>
+      <div class="field"><label>ρs — Piso superficial (Ω·m)</label><input id="rhos" type="number" value="" placeholder="Ej: 3000 (grava)"><div class="hint">Material de acabado superficial</div></div>
+    </div>
+
+    <div id="soil-summary-box" style="margin-top:14px"></div>
+
+    <div class="btn-row">
+      <button class="btn primary" onclick="showSection('calculos');markStep(3);runCalcs()">Continuar → Cálculos IEEE 80</button>
+    </div>
+  </div>
+
+  <!-- ═══════ CÁLCULOS IEEE 80 ═══════ -->
+  <div id="sec-calculos" style="display:none">
+    <div class="sec-title">Cálculos IEEE 80</div>
+    <div class="sec-sub">Tensiones tolerables de paso y contacto, GPR y validación térmica del conductor.</div>
+
+    <div class="card-grid g4" style="margin-bottom:14px">
+      <div class="metric"><div class="val" id="m-rho">—</div><div class="lbl">ρ suelo</div><div class="sub">Ω·m</div></div>
+      <div class="metric"><div class="val" id="m-Ig">—</div><div class="lbl">Ig diseño</div><div class="sub">A</div></div>
+      <div class="metric good"><div class="val" id="m-ep">—</div><div class="lbl">Ep tolerable</div><div class="sub">V (paso 70 kg)</div></div>
+      <div class="metric good"><div class="val" id="m-ec">—</div><div class="lbl">Ec tolerable</div><div class="sub">V (contacto 70 kg)</div></div>
+    </div>
+
+    <div class="card-grid g2" style="margin-bottom:14px">
+      <div class="card">
+        <h3>⚡ Tensiones tolerables IEEE 80 §8</h3>
+        <table style="width:100%;font-size:12px;border-collapse:collapse">
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 0;color:var(--ink3)">Ep — Paso (70 kg)</td><td style="font-family:var(--mono);text-align:right" id="c-ep70">—</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 0;color:var(--ink3)">Ec — Contacto (70 kg)</td><td style="font-family:var(--mono);text-align:right" id="c-ec70">—</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 0;color:var(--ink3)">Ep — Paso (50 kg)</td><td style="font-family:var(--mono);text-align:right" id="c-ep50">—</td></tr>
+          <tr><td style="padding:5px 0;color:var(--ink3)">Ec — Contacto (50 kg)</td><td style="font-family:var(--mono);text-align:right" id="c-ec50">—</td></tr>
+        </table>
+        <div style="margin-top:10px;font-size:11px;color:var(--ink3)">
+          Ep(70) = (1000+6ρs)·0.116/√tf<br>
+          Ec(70) = (1000+1.5ρs)·0.116/√tf
+        </div>
+      </div>
+      <div class="card">
+        <h3>🔥 Validación térmica IEEE 80 §11.3</h3>
+        <div class="form-grid" style="margin-bottom:10px">
+          <div class="field"><label>Sección conductor (mm²)</label><input id="cond-sec" type="number" value="50" oninput="calcThermal()"></div>
+          <div class="field"><label>Material</label>
+            <select id="cond-mat" onchange="calcThermal()">
+              <option value="Cu">Cobre desnudo (K=226)</option>
+              <option value="CuSW">Cu estañado 30% (K=200)</option>
+              <option value="Al">Aluminio (K=148)</option>
+              <option value="SS">Acero inox (K=70)</option>
+            </select>
+          </div>
+        </div>
+        <table style="width:100%;font-size:12px;border-collapse:collapse">
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 0;color:var(--ink3)">Sección mínima requerida</td><td style="font-family:var(--mono);text-align:right" id="c-amin">—</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 0;color:var(--ink3)">Temperatura máx. admisible</td><td style="font-family:var(--mono);text-align:right" id="c-tmax">—</td></tr>
+          <tr><td style="padding:5px 0;color:var(--ink3)">Estado térmico</td><td style="text-align:right" id="c-thermal-badge">—</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn primary" onclick="showSection('seguridad');markStep(4);runSafety()">Continuar → Seguridad eléctrica</button>
+      <button class="btn" onclick="runCalcs()">Recalcular</button>
+    </div>
+  </div>
+
+  <!-- ═══════ SEGURIDAD ELÉCTRICA ═══════ -->
+  <div id="sec-seguridad" style="display:none">
+    <div class="sec-title">Electrical Safety Validation Module</div>
+    <div class="sec-sub">Validación completa de seguridad humana según IEEE 80 §8 y normativa del país seleccionado.</div>
+
+    <div id="safety-alert-box" style="margin-bottom:14px"></div>
+
+    <!-- GAUGES ROW -->
+    <div class="card-grid g4" style="margin-bottom:14px" id="gauge-row">
+      <div class="card" style="text-align:center">
+        <div class="gauge-label">Rg calculada</div>
+        <div class="gauge-arc"><svg viewBox="0 0 90 50"><path d="M10 45 A40 40 0 0 1 80 45" stroke="#e2e0da" stroke-width="7" fill="none"/><path id="g-arc-rg" d="M10 45 A40 40 0 0 1 80 45" stroke="#0f4c35" stroke-width="7" fill="none" stroke-dasharray="125.7" stroke-dashoffset="125.7"/></svg></div>
+        <div class="gauge-val" id="g-rg">— Ω</div>
+        <div class="gauge-label">Límite: <span id="g-rg-lim">25 Ω</span></div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="gauge-label">GPR vs Ep tolerable</div>
+        <div class="gauge-arc"><svg viewBox="0 0 90 50"><path d="M10 45 A40 40 0 0 1 80 45" stroke="#e2e0da" stroke-width="7" fill="none"/><path id="g-arc-gpr" d="M10 45 A40 40 0 0 1 80 45" stroke="#0f4c35" stroke-width="7" fill="none" stroke-dasharray="125.7" stroke-dashoffset="125.7"/></svg></div>
+        <div class="gauge-val" id="g-gpr">— V</div>
+        <div class="gauge-label">Ep: <span id="g-ep-lim">— V</span></div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="gauge-label">V contacto vs Ec</div>
+        <div class="gauge-arc"><svg viewBox="0 0 90 50"><path d="M10 45 A40 40 0 0 1 80 45" stroke="#e2e0da" stroke-width="7" fill="none"/><path id="g-arc-ec" d="M10 45 A40 40 0 0 1 80 45" stroke="#0f4c35" stroke-width="7" fill="none" stroke-dasharray="125.7" stroke-dashoffset="125.7"/></svg></div>
+        <div class="gauge-val" id="g-vc">— V</div>
+        <div class="gauge-label">Ec: <span id="g-ec-lim">— V</span></div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="gauge-label">Ig corriente efectiva</div>
+        <div class="gauge-arc"><svg viewBox="0 0 90 50"><path d="M10 45 A40 40 0 0 1 80 45" stroke="#e2e0da" stroke-width="7" fill="none"/><path id="g-arc-ig" d="M10 45 A40 40 0 0 1 80 45" stroke="#0f4c35" stroke-width="7" fill="none" stroke-dasharray="125.7" stroke-dashoffset="125.7"/></svg></div>
+        <div class="gauge-val" id="g-ig">— kA</div>
+        <div class="gauge-label">Diseño</div>
+      </div>
+    </div>
+
+    <!-- VALIDATION TABLE -->
+    <div class="card" style="margin-bottom:14px">
+      <h3>Tabla de validación de seguridad</h3>
+      <div class="tbl-wrap">
+        <table class="val-table" id="safety-table">
+          <thead><tr><th>Parámetro</th><th>Calculado</th><th>Límite normativo</th><th>Margen</th><th>Estado</th></tr></thead>
+          <tbody id="safety-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RECOMENDACIONES -->
+    <div id="safety-recs" style="display:none" class="card">
+      <h3>⚠ Recomendaciones automáticas</h3>
+      <div id="safety-recs-body"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn primary" onclick="showSection('alternativas');markStep(5);evalAlternatives()">Continuar → Evaluar alternativas</button>
+    </div>
+  </div>
+
+  <!-- ═══════ ALTERNATIVAS SPT ═══════ -->
+  <div id="sec-alternativas" style="display:none">
+    <div class="sec-title">Evaluador — 25 Configuraciones SPT</div>
+    <div class="sec-sub">Criterio de selección: seguridad humana → cumplimiento normativo → complejidad constructiva → material requerido.</div>
+
+    <div id="alt-alert" style="margin-bottom:12px"></div>
+
+    <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <button class="btn sm" id="fb-all" onclick="filterAlts('all')" style="background:var(--ink);color:#fff;border-color:var(--ink)">Todas (25)</button>
+      <button class="btn sm" id="fb-VARILLA" onclick="filterAlts('VARILLA')">Varilla (10)</button>
+      <button class="btn sm" id="fb-ANILLO" onclick="filterAlts('ANILLO')">Anillo (11)</button>
+      <button class="btn sm" id="fb-TRIADA" onclick="filterAlts('TRIADA')">Tríada (4)</button>
+    </div>
+
+    <div class="tbl-wrap" style="margin-bottom:16px">
+      <table>
+        <thead><tr>
+          <th>Config.</th><th>Descripción</th><th>Rg (Ω)</th><th>GPR (V)</th>
+          <th>Ep real/toler.</th><th>Ec real/toler.</th><th>Material</th><th>Complejidad</th><th>Cumple</th><th>SVG</th>
+        </tr></thead>
+        <tbody id="alt-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- SELECTED CONFIG -->
+    <div id="sel-config-panel" style="display:none">
+      <hr class="sec-sep">
+      <div class="sec-title" style="font-size:14px;margin-bottom:10px">Configuración recomendada</div>
+      <div class="card-grid g2">
+        <div id="sel-config-info"></div>
+        <div class="svg-panel">
+          <div class="svg-toolbar">
+            <h3 id="svg-title">—</h3>
+            <button class="btn xs" onclick="zoomSvg(-0.2)">−</button>
+            <button class="btn xs" onclick="zoomSvg(0.2)">+</button>
+            <button class="btn xs" onclick="zoomSvg(0)">↺</button>
+          </div>
+          <div class="svg-body" id="svg-container"></div>
+        </div>
+      </div>
+
+      <!-- MALLA PARAMÉTRICA (if no config passes) -->
+      <div id="malla-panel" style="display:none;margin-top:14px">
+        <hr class="sec-sep">
+        <div class="sec-title" style="font-size:14px;margin-bottom:4px">Malla especial paramétrica</div>
+        <div class="sec-sub">Ninguna configuración estándar cumple. Genere una malla a medida.</div>
+        <div class="form-grid g3" style="margin-bottom:12px">
+          <div class="field"><label>Ancho W (m)</label><input id="m-w" type="number" value="10" oninput="renderMallaSvg()"></div>
+          <div class="field"><label>Largo L (m)</label><input id="m-l" type="number" value="10" oninput="renderMallaSvg()"></div>
+          <div class="field"><label>Espaciado (m)</label><input id="m-sp" type="number" value="2" step="0.5" oninput="renderMallaSvg()"></div>
+          <div class="field"><label>Prof. entierro h (m)</label><input id="m-h" type="number" value="0.5" step="0.1" oninput="renderMallaSvg()"></div>
+          <div class="field"><label>Varillas perimetro</label><input id="m-rods" type="number" value="4" min="0" oninput="renderMallaSvg()"></div>
+          <div class="field"><label>Rg malla estimada (Ω)</label><input id="m-rg" type="text" readonly></div>
+        </div>
+        <div class="svg-panel">
+          <div class="svg-toolbar"><h3>Malla especial — vista superior paramétrica</h3></div>
+          <div class="svg-body" id="malla-svg-container" style="min-height:200px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn primary" onclick="showSection('materiales');markStep(6);calcMaterials()">Continuar → Cantidades</button>
+    </div>
+  </div>
+
+  <!-- ═══════ MATERIALES ═══════ -->
+  <div id="sec-materiales" style="display:none">
+    <div class="sec-title">Estimación de Materiales</div>
+    <div class="sec-sub">Cantidades automáticas según configuración seleccionada.</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Descripción</th><th>Unidad</th><th>Cantidad</th><th>Nota</th></tr></thead>
+        <tbody id="mat-tbody"></tbody>
+      </table>
+    </div>
+    <div class="btn-row" style="margin-top:12px">
+      <button class="btn primary" onclick="showSection('reporte');markStep(7)">Generar documento</button>
+    </div>
+  </div>
+
+  <!-- ═══════ EVIDENCIAS ═══════ -->
+  <div id="sec-evidencias" style="display:none">
+    <div class="sec-title">Evidencias Fotográficas</div>
+    <div class="sec-sub">Las imágenes se insertan directamente en DOCX/PDF sin interpretación automática.</div>
+    <div class="alert info"><span class="ai">ℹ</span><div><strong>Módulo de imágenes</strong>Admite JPG, PNG, WebP. Se aplica resize automático a 1200×900 px máximo. Las imágenes solo se insertan en los informes — no son analizadas por IA.</div></div>
+    <div style="border:2px dashed var(--border2);border-radius:7px;padding:28px;text-align:center;cursor:pointer;color:var(--ink3)" onclick="document.getElementById('img-input').click()">
+      <div style="font-size:22px;margin-bottom:6px">📷</div>
+      <div style="font-size:13px;font-weight:500">Haga clic o arrastre imágenes aquí</div>
+      <div style="font-size:11px;margin-top:4px">JPG · PNG · WebP — máx. 10 MB por imagen</div>
+      <input id="img-input" type="file" multiple accept="image/*" style="display:none" onchange="handleImages(this)">
+    </div>
+    <div id="img-preview" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px"></div>
+  </div>
+
+  <!-- ═══════ REPORTE ═══════ -->
+  <div id="sec-reporte" style="display:none">
+    <div class="sec-title">Generación Documental</div>
+    <div class="sec-sub">Seleccione el tipo de documento. El checker debe estar aprobado para exportar DOCX y PDF.</div>
+
+    <div id="ck-warn-docgen" style="margin-bottom:12px"></div>
+
+    <div class="card-grid g2" style="margin-bottom:14px">
+      <div class="card" style="border-color:var(--accent);cursor:pointer" onclick="genDoc('completo')">
+        <h3 style="color:var(--accent)">📁 Informe completo SPT</h3>
+        <div style="font-size:12px;color:var(--ink3)">Portada + resistividad + modelo suelo + cálculos IEEE 80 + configuración SVG + materiales + validaciones + disclaimer normativo.</div>
+        <div class="btn-row" style="margin-top:10px">
+          <button class="btn sm primary" onclick="exportDoc('docx','completo');event.stopPropagation()">⬇ DOCX</button>
+          <button class="btn sm" onclick="exportDoc('pdf','completo');event.stopPropagation()">⬇ PDF</button>
+          <button class="btn sm" onclick="exportDoc('json','completo');event.stopPropagation()">{} JSON</button>
+        </div>
+      </div>
+      <div class="card" style="cursor:pointer">
+        <h3>📊 Informe de resistividad</h3>
+        <div style="font-size:12px;color:var(--ink3)">Mediciones Wenner/Schlumberger, estadísticas, perfil de resistividad y clasificación del terreno.</div>
+        <div class="btn-row" style="margin-top:10px">
+          <button class="btn sm" onclick="exportDoc('docx','resist')">⬇ DOCX</button>
+          <button class="btn sm" onclick="exportDoc('pdf','resist')">⬇ PDF</button>
+        </div>
+      </div>
+      <div class="card" style="cursor:pointer">
+        <h3>🧮 Memoria de cálculo SPT</h3>
+        <div style="font-size:12px;color:var(--ink3)">Cálculos IEEE 80, configuración seleccionada con SVG, cantidades de material y todas las validaciones técnicas.</div>
+        <div class="btn-row" style="margin-top:10px">
+          <button class="btn sm" onclick="exportDoc('docx','memoria')">⬇ DOCX</button>
+          <button class="btn sm" onclick="exportDoc('pdf','memoria')">⬇ PDF</button>
+        </div>
+      </div>
+      <div class="card" style="cursor:pointer">
+        <h3>⚖ Comparador de alternativas</h3>
+        <div style="font-size:12px;color:var(--ink3)">Tabla completa de las 25 configuraciones con Rg, tensiones de paso/contacto, materiales y justificación técnica.</div>
+        <div class="btn-row" style="margin-top:10px">
+          <button class="btn sm" onclick="exportDoc('docx','comp')">⬇ DOCX</button>
+          <button class="btn sm" onclick="exportDoc('json','comp')">{} JSON</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div id="report-preview" style="display:none;background:#fff;border:1px solid var(--border);border-radius:7px;padding:24px;max-width:680px;margin:0 auto">
+      <div style="text-align:center;border-bottom:2px solid var(--accent);padding-bottom:16px;margin-bottom:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:6px" id="rep-norm-line">—</div>
+        <div style="font-family:var(--display);font-size:20px;font-weight:700;color:var(--ink)">MEMORIA DE CÁLCULO</div>
+        <div style="font-size:13px;color:var(--ink2);margin-top:2px">Sistema de Puesta a Tierra (SPT)</div>
+        <div style="font-size:13px;color:var(--accent);font-weight:600;margin-top:6px" id="rep-nombre">—</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink3);margin-top:8px">TerraDoc v3 LATAM · Rev. <span id="rep-rev">—</span></div>
+      </div>
+      <div class="card-grid g2">
+        <div id="rep-summary-box"></div>
+        <div id="rep-params-box"></div>
+      </div>
+      <div style="margin-top:14px" id="rep-config-svg-box"></div>
+      <div style="margin-top:14px" id="rep-validations-box"></div>
+      <div class="disclaimer" style="margin-top:16px" id="rep-disclaimer-text">
+        <strong>AVISO LEGAL:</strong> TerraDoc es una herramienta de apoyo técnico. Los cálculos dependen de la información suministrada por el usuario. La validación final y firma son responsabilidad exclusiva del profesional competente conforme a la normativa vigente y las normas IEEE aplicables.
+      </div>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:11px;color:var(--ink3)">
+        <div><span style="font-weight:600;color:var(--ink);font-size:12px" id="rep-prof">—</span><br><span id="rep-mat">—</span></div>
+        <div style="text-align:right;font-family:var(--mono)">TerraDoc v3 LATAM<br><span id="rep-fecha-line">—</span></div>
+      </div>
+    </div>
+    <div class="btn-row" style="justify-content:center;margin-top:12px">
+      <button class="btn" onclick="showSection('checker')">Ver consistency checker</button>
+    </div>
+  </div>
+
+  <!-- ═══════ CONSISTENCY CHECKER ═══════ -->
+  <div id="sec-checker" style="display:none">
+    <div class="sec-title">Consistency Checker</div>
+    <div class="sec-sub">Validación estricta de coherencia técnica. Issues críticos bloquean la exportación documental.</div>
+    <div id="checker-output">
+      <div class="alert info"><span class="ai">ℹ</span><div>Ejecute el checker después de completar cálculos y seleccionar configuración.</div></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn primary" onclick="runChecker()">↺ Ejecutar checker</button>
+      <button class="btn" onclick="showSection('reporte');genDoc('completo')">Ver informe</button>
+    </div>
+  </div>
+
+  </div><!-- end content-area -->
+</div><!-- end main -->
+</div><!-- end shell -->
+
+<!-- ════════════════════════════════════════════
+     JAVASCRIPT — Load order matters
+     app.js must be last (calls all others via DOMContentLoaded)
+════════════════════════════════════════════ -->
+
+<!-- Core state & initialization -->
+<script src="js/terradoc_measurements.js"></script>
+<script src="js/terradoc_soil_model.js"></script>
+<script src="js/terradoc_ieee80_calculations.js"></script>
+<script src="js/terradoc_safety_validation.js"></script>
+<script src="js/terradoc_spt_alternatives.js"></script>
+<script src="js/terradoc_svg_renderer.js"></script>
+<script src="js/terradoc_materials.js"></script>
+<script src="js/terradoc_checker.js"></script>
+<script src="js/terradoc_reports.js"></script>
+<script src="js/terradoc_ui.js"></script>
+
+<!-- App entry point (loads data, initializes) -->
+<script src="js/terradoc_modals.js"></script>
+<script src="js/terradoc_app.js"></script>
+
+</body>
+</html>
