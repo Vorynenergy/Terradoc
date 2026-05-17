@@ -1,0 +1,65 @@
+{
+  "_meta": {
+    "producto": "MecLine LATAM",
+    "version": "6.0",
+    "archivo": "mecline_hypotheses.json"
+  },
+  "motor_version": "v6",
+  "metodo": "Aproximación parabólica",
+  "nota": "Válida para f/L < 8%. Sin ecuación completa de cambio de estado.",
+  "constantes_fisicas": {
+    "G": 9.81,
+    "RHO_AIRE": 1.25,
+    "CD": 1,
+    "FA": 1.05,
+    "DL": 0.03
+  },
+  "factor_seguridad_apoyo": {
+    "concreto": 2.5,
+    "acero": 2,
+    "fibra": 2.5,
+    "madera": 3
+  },
+  "hipotesis": [
+    {
+      "id": "A",
+      "nombre": "Viento máximo",
+      "descripcion": "Temperatura coincidente. Carga viento máxima. Tensión horizontal máxima.",
+      "limite_critico": "uts_viento",
+      "regulatoria": true
+    },
+    {
+      "id": "B",
+      "nombre": "Temperatura mínima",
+      "descripcion": "Sin viento. Mayor tensión térmica (~+8% EDS). Conductor más tenso.",
+      "limite_critico": "uts_viento",
+      "regulatoria": false,
+      "nota": "Aproximación paramétrica"
+    },
+    {
+      "id": "C",
+      "nombre": "Operación EDS",
+      "descripcion": "Temperatura promedio. Sin viento. Control vibración y fatiga.",
+      "limite_critico": "uts_eds",
+      "regulatoria": true
+    },
+    {
+      "id": "D",
+      "nombre": "Temperatura máxima",
+      "descripcion": "Sin viento. Flecha máxima. Verificación distancias de seguridad.",
+      "limite_critico": "deflexion",
+      "regulatoria": false,
+      "nota": "Aproximación paramétrica"
+    }
+  ],
+  "limites_porcentaje": {
+    "uts_viento": 0.5,
+    "uts_eds": 0.18,
+    "deflexion": 0.03
+  },
+  "estados": {
+    "cumple": "Todos los criterios dentro de límites",
+    "revisar": "Uno o más criterios entre 80-100% del límite",
+    "critico": "Uno o más criterios superan el límite"
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "_meta": {
+    "producto": "MecLine LATAM",
+    "version": "6.0",
+    "archivo": "mecline_countries.json"
+  },
+  "paises": {
+    "colombia": {
+      "pais": "Colombia",
+      "flag": "🇨🇴",
+      "norma_principal": "RETIE 2013 + NTC 2050",
+      "complementarias": [
+        "IEC 60826",
+        "IEEE 524",
+        "UPME"
+      ],
+      "limites": {
+        "uts_viento": 0.5,
+        "uts_eds": 0.18,
+        "deflexion": 0.03,
+        "factor_seguridad": 2.5
+      },
+      "viento_ref": 27,
+      "tmin": 5,
+      "tmax": 40,
+      "teds": 25
+    },
+    "mexico": {
+      "pais": "México",
+      "flag": "🇲🇽",
+      "norma_principal": "NOM-001-SEDE-2012",
+      "complementarias": [
+        "CFE L0000-45",
+        "IEC 60826"
+      ],
+      "limites": {
+        "uts_viento": 0.5,
+        "uts_eds": 0.18,
+        "deflexion": 0.03,
+        "factor_seguridad": 2.5
+      },
+      "viento_ref": 28,
+      "tmin": 5,
+      "tmax": 42,
+      "teds": 25
+    },
+    "peru": {
+      "pais": "Perú",
+      "flag": "🇵🇪",
+      "norma_principal": "CNE Suministro 2011",
+      "complementarias": [
+        "IEC 60826",
+        "DGE-032"
+      ],
+      "limites": {
+        "uts_viento": 0.5,
+        "uts_eds": 0.18,
+        "deflexion": 0.025,
+        "factor_seguridad": 2.5
+      },
+      "viento_ref": 25,
+      "tmin": 5,
+      "tmax": 38,
+      "teds": 24
+    },
+    "chile": {
+      "pais": "Chile",
+      "flag": "🇨🇱",
+      "norma_principal": "SEC / NCh 433",
+      "complementarias": [
+        "IEC 60826",
+        "IEEE 659"
+      ],
+      "limites": {
+        "uts_viento": 0.5,
+        "uts_eds": 0.2,
+        "deflexion": 0.03,
+        "factor_seguridad": 2.5
+      },
+      "viento_ref": 30,
+      "tmin": 0,
+      "tmax": 40,
+      "teds": 22
+    },
+    "ecuador": {
+      "pais": "Ecuador",
+      "flag": "🇪🇨",
+      "norma_principal": "Regulación ARCONEL",
+      "complementarias": [
+        "IEC 60826",
+        "IEEE 524"
+      ],
+      "limites": {
+        "uts_viento": 0.5,
+        "uts_eds": 0.18,
+        "deflexion": 0.03,
+        "factor_seguridad": 2.5
+      },
+      "viento_ref": 26,
+      "tmin": 8,
+      "tmax": 38,
+      "teds": 25
+    },
+    "argentina": {
+      "pais": "Argentina",
+      "flag": "🇦🇷",
+      "norma_principal": "ENRE / AEA 95302",
+      "complementarias": [
+        "IEC 60826",
+        "IRAM 2186"
+      ],
+      "limites": {
+        "uts_viento": 0.5,
+        "uts_eds": 0.18,
+        "deflexion": 0.03,
+        "factor_seguridad": 2.5
+      },
+      "viento_ref": 28,
+      "tmin": -5,
+      "tmax": 42,
+      "teds": 20
+    },
+    "bolivia": {
+      "pais": "Bolivia",
+      "flag": "🇧🇴",
+      "norma_principal": "CNE Bolivia",
+      "complementarias": [
+        "IEC 60826"
+      ],
+      "limites": {
+        "uts_viento": 0.5,
+        "uts_eds": 0.18,
+        "deflexion": 0.03,
+        "factor_seguridad": 2.5
+      },
+      "viento_ref": 24,
+      "tmin": 0,
+      "tmax": 38,
+      "teds": 22
+    },
+    "panama": {
+      "pais": "Panamá",
+      "flag": "🇵🇦",
+      "norma_principal": "ETESA / ASEP",
+      "complementarias": [
+        "IEC 60826",
+        "IEEE 524"
+      ],
+      "limites": {
+        "uts_viento": 0.5,
+        "uts_eds": 0.18,
+        "deflexion": 0.03,
+        "factor_seguridad": 2.5
+      },
+      "viento_ref": 30,
+      "tmin": 20,
+      "tmax": 35,
+      "teds": 28
+    }
+  }
+}

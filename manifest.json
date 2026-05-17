@@ -1,0 +1,99 @@
+{
+  "_meta": {
+    "plataforma": "Voryn Energy",
+    "producto": "MecLine LATAM",
+    "prefijo_archivos": "mecline_",
+    "no_mezclar_con": ["DimElec LATAM", "TerraDoc SPT", "Landing Voryn"],
+    "generado": "2026-05-15"
+  },
+  "name": "MecLine LATAM",
+  "short_name": "MecLine",
+  "version": "1.0.0",
+  "semver": "1.0.0",
+  "description": "Herramienta profesional de diseño electromecánico de redes aéreas de distribución para LATAM",
+  "entrypoint": "index.html",
+  "engine": "JavaScript puro — Sin framework — Sin bundler",
+  "type": "spa-static",
+  "deploy": "Servidor HTTP estático — Apache, Nginx, GitHub Pages, Vercel, Netlify",
+  "compatible_con": ["Chrome 100+", "Firefox 100+", "Edge 100+", "Safari 15+"],
+  "build_requerido": false,
+
+  "archivos_css": [
+    "css/mecline_main.css",
+    "css/mecline_components.css",
+    "css/mecline_responsive.css",
+    "css/mecline_print.css"
+  ],
+  "archivos_js": [
+    "js/mecline_app.js",
+    "js/mecline_calculations.js",
+    "js/mecline_validations.js",
+    "js/mecline_ui.js",
+    "js/mecline_exports.js",
+    "js/mecline_modals.js",
+    "js/mecline_ai_assistant.js"
+  ],
+  "archivos_data": [
+    "data/mecline_countries.json",
+    "data/mecline_constructive_sets.json",
+    "data/mecline_standards.json",
+    "data/mecline_hypotheses.json",
+    "data/mecline_structures.json",
+    "data/mecline_report_templates.json"
+  ],
+  "archivos_docs": [
+    "docs/mecline_project_map.md",
+    "docs/mecline_architecture.md",
+    "docs/mecline_dependencies.md",
+    "docs/mecline_validation_checklist.md"
+  ],
+  "archivos_tests": [
+    "tests/mecline_button_tests.md",
+    "tests/mecline_calculation_tests.md",
+    "tests/mecline_export_tests.md"
+  ],
+
+  "dependencias_externas": [
+    { "nombre": "Tabler Icons", "version": "2.47.0", "critico": false },
+    { "nombre": "SheetJS (XLSX)", "version": "0.18.5", "critico": true },
+    { "nombre": "Google Fonts", "version": "latest", "critico": false },
+    { "nombre": "Claude API", "version": "claude-sonnet-4-20250514", "critico": false, "seguridad": "Nunca exponer key en frontend" }
+  ],
+
+  "modulos_criticos": [
+    { "archivo": "js/mecline_calculations.js", "funciones": ["motorCalculo","determinarEstado","calcular","calcularHipotesis","procesarProyecto"] },
+    { "archivo": "js/mecline_validations.js",  "funciones": ["recomendarConjunto","validarConjunto"] },
+    { "archivo": "js/mecline_exports.js",       "funciones": ["exportarXLSX","genMemHTML","exportarDatos"] },
+    { "archivo": "js/mecline_ai_assistant.js",  "funciones": ["sendMsg","addMsg","updMsg"] }
+  ],
+
+  "datos_tecnicos": {
+    "paises": 8,
+    "conductores": 16,
+    "conjuntos_constructivos": 18,
+    "hipotesis_de_carga": 4,
+    "metodo_calculo": "Aproximación parabólica (válida f/L < 8%)"
+  },
+
+  "planes": [
+    { "id": "free", "precio_usd": 0, "ia_mensajes_dia": 5, "paises": 3 },
+    { "id": "pro", "precio_usd": 49, "ia_mensajes_dia": -1, "paises": 8, "estructuras_max": 200 },
+    { "id": "enterprise", "precio_usd": -1, "ia_mensajes_dia": -1, "paises": -1, "estructuras_max": -1 }
+  ],
+
+  "exportaciones_soportadas": ["xlsx", "json", "html", "pdf"],
+
+  "funcionamiento_offline": {
+    "motor_calculo": true,
+    "catalogo": true,
+    "exportar_xlsx": true,
+    "memoria_tecnica": true,
+    "asistente_ia": false
+  },
+
+  "backend_recomendado_produccion": {
+    "proxy_ia": "POST /api/mecline/ia/chat",
+    "auth": "JWT integrado con auth Voryn",
+    "razon": "Seguridad API key + planes reales"
+  }
+}

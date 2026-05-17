@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "producto": "MecLine LATAM",
+    "version": "6.0",
+    "archivo": "mecline_structures.json"
+  },
+  "descripcion": "Parámetros de estructuras de referencia para importación de proyectos",
+  "columnas_requeridas_xlsx": [
+    "id_estructura",
+    "conductor",
+    "tipo_apoyo",
+    "vano",
+    "angulo",
+    "diam_mm",
+    "peso_km",
+    "uts_kn"
+  ],
+  "columnas_opcionales_xlsx": [
+    "h_poste",
+    "h_amarre",
+    "carga_rot_kn",
+    "tipo_poste",
+    "observaciones"
+  ],
+  "tipos_apoyo_validos": [
+    "alineacion",
+    "angular",
+    "retencion",
+    "terminal",
+    "derivacion"
+  ],
+  "tipos_poste_validos": [
+    "concreto",
+    "acero",
+    "fibra",
+    "madera"
+  ],
+  "rangos_validos": {
+    "vano_m": [
+      10,
+      300
+    ],
+    "angulo_deg": [
+      0,
+      90
+    ],
+    "diam_mm": [
+      5,
+      50
+    ],
+    "peso_km_kgm": [
+      0.05,
+      5
+    ],
+    "uts_kn": [
+      5,
+      500
+    ],
+    "h_poste_m": [
+      6,
+      20
+    ]
+  }
+}

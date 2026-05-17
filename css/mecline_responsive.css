@@ -1,0 +1,47 @@
+/* ═══════════════════════════════════════════════════════════════════
+   MecLine LATAM — mecline_responsive.css
+   Proyecto: Voryn Energy / MecLine LATAM
+   Prefijo: mecline_  |  NO mezclar con DimElec, TerraDoc ni Landing Voryn
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ══ TABLET (≤ 1024px) ═════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .workspace { grid-template-columns: 180px 1fr; }
+  .g3 { grid-template-columns: 1fr 1fr; }
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .hip-grid { grid-template-columns: repeat(2, 1fr); }
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr 1fr; }
+  .norm-grid { grid-template-columns: repeat(2, 1fr); }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ══ MOBILE (≤ 768px) ══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .workspace { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .topbar { padding: 0 10px; gap: 6px; }
+  .tb-mode { gap: 2px; }
+  .tb-btn { padding: 4px 8px; font-size: 11px; }
+  .logo-sub, .chips { display: none; }
+  .g2, .g3, .g4 { grid-template-columns: 1fr; }
+  .metric-grid, .kpi-row { grid-template-columns: 1fr 1fr; }
+  .hip-grid, .cat-grid, .norm-grid, .conj-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+  .ph { padding: 10px 14px; flex-wrap: wrap; gap: 8px; }
+  .pb { padding: 12px 14px; }
+  .action-bar { flex-wrap: wrap; }
+  .action-bar .btn { flex: 1; justify-content: center; min-width: 100px; }
+  .onb-card { padding: 24px 20px; border-radius: 16px; }
+  .onb-feats { grid-template-columns: 1fr; }
+  .onb-actions { flex-direction: column; }
+  .modal { width: 96vw; max-height: 92vh; border-radius: 16px; }
+  .tbl-wrap { font-size: 11px; }
+}
+
+/* ══ SMALL MOBILE (≤ 480px) ════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .metric-grid, .kpi-row { grid-template-columns: 1fr; }
+  .tb-r .status-lbl, .tb-r .status-dot { display: none; }
+  .plan-badge { font-size: 9px; padding: 3px 7px; }
+}

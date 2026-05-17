@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "producto": "MecLine LATAM",
+    "version": "6.0",
+    "archivo": "mecline_report_templates.json"
+  },
+  "memoria_tecnica": {
+    "secciones": [
+      "portada",
+      "marco_normativo",
+      "hipotesis_de_carga",
+      "tabla_resultados",
+      "conjuntos_constructivos",
+      "conclusiones",
+      "firmas"
+    ],
+    "disclaimer": "Los resultados de esta memoria son de carácter preliminar. La aceptación final del diseño es responsabilidad exclusiva del profesional de ingeniería responsable del proyecto.",
+    "nota_motor": "Cálculos realizados mediante aproximación parabólica (válida f/L < 8%). Motor mecánico MecLine v6.",
+    "firmas": [
+      "Elaboró",
+      "Revisó",
+      "Aprobó"
+    ]
+  },
+  "exportaciones_soportadas": [
+    {
+      "id": "xlsx",
+      "nombre": "Excel de resultados",
+      "funcion": "mecline_exportarXLSX()",
+      "formato": ".xlsx"
+    },
+    {
+      "id": "json",
+      "nombre": "Proyecto JSON",
+      "funcion": "mecline_exportarDatos()",
+      "formato": ".json"
+    },
+    {
+      "id": "html",
+      "nombre": "Memoria técnica HTML",
+      "funcion": "mecline_genMemHTML()",
+      "formato": ".html"
+    },
+    {
+      "id": "pdf",
+      "nombre": "Memoria técnica PDF",
+      "funcion": "window.print()",
+      "formato": ".pdf",
+      "nota": "Via window.print() desde pestaña HTML"
+    }
+  ]
+}

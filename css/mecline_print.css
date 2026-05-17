@@ -1,0 +1,38 @@
+/* ═══════════════════════════════════════════════════════════════════
+   MecLine LATAM — mecline_print.css
+   Proyecto: Voryn Energy / MecLine LATAM
+   Prefijo: mecline_  |  NO mezclar con DimElec, TerraDoc ni Landing Voryn
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media print {
+  /* Ocultar elementos de navegación */
+  .topbar, .sidebar, .action-bar,
+  .onb-bg, .demo-banner, .modal-bg,
+  .chat-footer, .ai-counter,
+  .upgrade-gate, #conj-pro-gate,
+  .btn, .tb-btn, .nb,
+  [id$="-upgrade-gate"] { display: none !important; }
+
+  /* Layout */
+  .shell { grid-template-rows: 1fr; height: auto; }
+  .workspace { grid-template-columns: 1fr; height: auto; overflow: visible; }
+  .main { overflow: visible; }
+  .panel { display: block !important; page-break-inside: avoid; }
+
+  /* Tipografía */
+  body { font-size: 11pt; color: #000; background: #fff; }
+  .card { border: 1px solid #ccc; box-shadow: none; }
+  .badge { border: 1px solid #999; }
+
+  /* Tablas */
+  .tbl { width: 100%; border-collapse: collapse; }
+  .tbl th, .tbl td { border: 1px solid #ccc; padding: 4pt 6pt; }
+  .tbl thead { background: #f0f0f0; }
+
+  /* Page breaks */
+  .card { page-break-inside: avoid; }
+  h2, h3, .ph-title { page-break-after: avoid; }
+
+  /* URLs en links */
+  a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #666; }
+}

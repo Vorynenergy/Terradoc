@@ -1,0 +1,631 @@
+{
+  "_meta": {
+    "producto": "MecLine LATAM",
+    "version": "6.0",
+    "archivo": "mecline_constructive_sets.json"
+  },
+  "conjuntos": [
+    {
+      "codigo": "MT-SUSP-3F-URB",
+      "nombre": "Suspensión trifásica urbana MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22
+      ],
+      "zona": [
+        "urbana",
+        "semiurbana"
+      ],
+      "tipo": "suspension",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 5,
+      "vano_min": 30,
+      "vano_max": 80,
+      "conductores": [
+        "ACSR",
+        "AAAC",
+        "ACAR"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Poste concreto",
+        "Cruceta metálica",
+        "Aislador tipo PIN",
+        "Grapa de suspensión",
+        "Perno pasante",
+        "Varilla armar"
+      ],
+      "observaciones": "Para tramos rectos o deflexiones mínimas en zona urbana."
+    },
+    {
+      "codigo": "MT-SUSP-3F-RUR",
+      "nombre": "Suspensión trifásica rural MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22,
+        33
+      ],
+      "zona": [
+        "rural",
+        "semiurbana"
+      ],
+      "tipo": "suspension",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 8,
+      "vano_min": 40,
+      "vano_max": 120,
+      "conductores": [
+        "ACSR",
+        "AAAC",
+        "ACAR"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Poste concreto",
+        "Cruceta madera/metálica",
+        "Aislador PIN o suspensión",
+        "Grapa preformada",
+        "Varilla armar"
+      ],
+      "observaciones": "Para vanos largos en zonas rurales con terreno abierto."
+    },
+    {
+      "codigo": "MT-SUSP-1F",
+      "nombre": "Suspensión monofásica MT",
+      "pais": "latam",
+      "nivel_kv": [
+        7.6,
+        13.2
+      ],
+      "zona": [
+        "rural"
+      ],
+      "tipo": "suspension",
+      "fases": "1F",
+      "ang_min": 0,
+      "ang_max": 5,
+      "vano_min": 30,
+      "vano_max": 100,
+      "conductores": [
+        "ACSR",
+        "Cu"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Poste concreto",
+        "Ménsola",
+        "Aislador PIN",
+        "Grapa de amarre",
+        "Varilla armar"
+      ],
+      "observaciones": "Para ramales rurales monofásicos."
+    },
+    {
+      "codigo": "MT-ANG-3F-URB",
+      "nombre": "Angular trifásica urbana MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22
+      ],
+      "zona": [
+        "urbana",
+        "semiurbana"
+      ],
+      "tipo": "angular",
+      "fases": "3F",
+      "ang_min": 5,
+      "ang_max": 30,
+      "vano_min": 30,
+      "vano_max": 70,
+      "conductores": [
+        "ACSR",
+        "AAAC"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Poste concreto reforzado",
+        "Cruceta angular",
+        "Aislador de suspensión cadenal",
+        "Herraje de suspensión",
+        "Varilla armar"
+      ],
+      "observaciones": "Ángulo de 5° a 30°. Verificar retenida para ángulos > 20° con vanos largos."
+    },
+    {
+      "codigo": "MT-ANG-3F-RUR",
+      "nombre": "Angular trifásica rural MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22,
+        33
+      ],
+      "zona": [
+        "rural"
+      ],
+      "tipo": "angular",
+      "fases": "3F",
+      "ang_min": 5,
+      "ang_max": 30,
+      "vano_min": 40,
+      "vano_max": 100,
+      "conductores": [
+        "ACSR",
+        "AAAC",
+        "ACAR"
+      ],
+      "requiere_retenida": true,
+      "componentes": [
+        "Poste concreto",
+        "Cruceta angular reforzada",
+        "Cadena de aisladores doble",
+        "Grapa de amarre angular",
+        "Retenida inclinada",
+        "Bloque de anclaje"
+      ],
+      "observaciones": "Requiere retenida en la mayoría de configuraciones. Verificar capacidad del terreno."
+    },
+    {
+      "codigo": "MT-RET-3F",
+      "nombre": "Retención/anclaje trifásica MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22,
+        33
+      ],
+      "zona": [
+        "rural",
+        "urbana",
+        "semiurbana"
+      ],
+      "tipo": "retencion",
+      "fases": "3F",
+      "ang_min": 30,
+      "ang_max": 90,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "ACSR",
+        "AAAC",
+        "ACAR",
+        "Cu"
+      ],
+      "requiere_retenida": true,
+      "componentes": [
+        "Poste concreto alta resistencia",
+        "Cruceta retención doble",
+        "Cadena de aisladores tipo retención",
+        "Grapa de retención",
+        "Retenidas (2 o más)",
+        "Bloque anclaje"
+      ],
+      "observaciones": "Ángulo > 30°. Obligatoria verificación estructural detallada. Factor de seguridad mínimo 2.5."
+    },
+    {
+      "codigo": "MT-TERM-3F",
+      "nombre": "Terminal trifásica MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22,
+        33
+      ],
+      "zona": [
+        "rural",
+        "urbana",
+        "semiurbana",
+        "industrial"
+      ],
+      "tipo": "terminal",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 90,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "ACSR",
+        "AAAC",
+        "ACAR",
+        "Cu"
+      ],
+      "requiere_retenida": true,
+      "componentes": [
+        "Poste concreto alta resistencia",
+        "Cruceta terminal",
+        "Cadena de aisladores retención",
+        "Grapa de terminal",
+        "Retenidas (2-3)",
+        "Bloque anclaje en V",
+        "Puesta a tierra"
+      ],
+      "observaciones": "Estructura de inicio/fin de tramo. Retenidas obligatorias. Incluir SPT."
+    },
+    {
+      "codigo": "MT-DER-3F",
+      "nombre": "Derivación trifásica MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22
+      ],
+      "zona": [
+        "rural",
+        "urbana",
+        "semiurbana"
+      ],
+      "tipo": "derivacion",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 10,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "ACSR",
+        "AAAC"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Poste concreto",
+        "Cruceta derivación",
+        "Aisladores PIN+suspensión",
+        "Conectores de derivación",
+        "Varilla armar"
+      ],
+      "observaciones": "Derivación sin cambio de dirección. Para taps con ángulo > 30° usar retención."
+    },
+    {
+      "codigo": "MT-TRANSF-URB",
+      "nombre": "Transformador en poste urbano",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22
+      ],
+      "zona": [
+        "urbana",
+        "semiurbana"
+      ],
+      "tipo": "transformador",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 5,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "ACSR",
+        "AAAC",
+        "Cu"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Poste concreto",
+        "Plataforma transformador",
+        "Cortacircuito fusible (3u)",
+        "Pararrayos DPS (3u)",
+        "Caja BT",
+        "Neutro cableado",
+        "SPT"
+      ],
+      "observaciones": "Incluye protección completa MT/BT. SPT obligatorio. Verificar corriente de corto para selección de fusibles."
+    },
+    {
+      "codigo": "MT-TRANSF-RUR",
+      "nombre": "Transformador en poste rural",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22
+      ],
+      "zona": [
+        "rural"
+      ],
+      "tipo": "transformador",
+      "fases": "1F",
+      "ang_min": 0,
+      "ang_max": 5,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "ACSR",
+        "Cu"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Poste concreto",
+        "Ménsola transformador",
+        "Cortacircuito fusible (1u)",
+        "Pararrayos DPS",
+        "Bajante BT",
+        "SPT"
+      ],
+      "observaciones": "Monofásico rural. Verificar capacidad de transformador y selección de fusible."
+    },
+    {
+      "codigo": "MT-SECC-3F",
+      "nombre": "Seccionamiento trifásico MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22,
+        33
+      ],
+      "zona": [
+        "rural",
+        "urbana",
+        "semiurbana"
+      ],
+      "tipo": "seccionamiento",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 5,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "ACSR",
+        "AAAC"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Poste concreto",
+        "Seccionador tripolar",
+        "Cortacircuito (opcional)",
+        "SPT",
+        "Señalización"
+      ],
+      "observaciones": "Para seccionalización de circuito. Coordinar con protecciones."
+    },
+    {
+      "codigo": "MT-PROT-CC",
+      "nombre": "Protección con cortacircuito MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22
+      ],
+      "zona": [
+        "rural",
+        "urbana"
+      ],
+      "tipo": "proteccion",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 5,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "ACSR",
+        "AAAC",
+        "Cu"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Poste concreto",
+        "Cortacircuito fusible (3u)",
+        "Pararrayos DPS",
+        "SPT"
+      ],
+      "observaciones": "Protección de ramales y transformadores. Seleccionar fusible según corriente de falla."
+    },
+    {
+      "codigo": "MT-DPS",
+      "nombre": "Protección con pararrayos (DPS) MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22,
+        33
+      ],
+      "zona": [
+        "rural",
+        "urbana",
+        "semiurbana"
+      ],
+      "tipo": "proteccion",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 5,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "ACSR",
+        "AAAC",
+        "ACAR"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Poste existente/nuevo",
+        "Pararrayos DPS (3u)",
+        "Soporte DPS",
+        "SPT",
+        "Bajante tierra"
+      ],
+      "observaciones": "Protección contra sobretensiones. Coordinar nivel de aislamiento."
+    },
+    {
+      "codigo": "MT-RETENIDA-SIMP",
+      "nombre": "Retenida simple MT/BT",
+      "pais": "latam",
+      "nivel_kv": [
+        0.4,
+        11,
+        13.2,
+        22
+      ],
+      "zona": [
+        "rural",
+        "urbana",
+        "semiurbana"
+      ],
+      "tipo": "retenida",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 90,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "ACSR",
+        "AAAC",
+        "Cu"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Cable de acero 3/8\"",
+        "Abrazadera poste",
+        "Tensor guardacabo",
+        "Bloque anclaje",
+        "Varilla anclaje"
+      ],
+      "observaciones": "Retenida simple a tierra. Verificar ángulo y carga de tracción."
+    },
+    {
+      "codigo": "MT-RETENIDA-VOL",
+      "nombre": "Retenida en vuelo MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22
+      ],
+      "zona": [
+        "rural",
+        "urbana"
+      ],
+      "tipo": "retenida",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 90,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "ACSR",
+        "AAAC"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Cable de acero 3/8\"",
+        "Abrazaderas apoyo",
+        "Tensores guardacabo",
+        "Barra de equilibrio",
+        "Aislador de retenida"
+      ],
+      "observaciones": "Cuando no es posible anclar a tierra. Retenida entre dos apoyos."
+    },
+    {
+      "codigo": "MT-TRANS-AS",
+      "nombre": "Transición aérea-subterránea MT",
+      "pais": "latam",
+      "nivel_kv": [
+        11,
+        13.2,
+        22
+      ],
+      "zona": [
+        "urbana",
+        "semiurbana",
+        "industrial"
+      ],
+      "tipo": "transicion",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 5,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "ACSR",
+        "AAAC",
+        "Cu"
+      ],
+      "requiere_retenida": true,
+      "componentes": [
+        "Poste terminal",
+        "Terminaciones de cable MT",
+        "Pararrayos DPS",
+        "Tubo galvanizado protección",
+        "SPT",
+        "Retenidas terminal"
+      ],
+      "observaciones": "Empalme red aérea con red subterránea. Coordinar nivel de aislamiento con el cable."
+    },
+    {
+      "codigo": "BT-SUSP-MUL",
+      "nombre": "Suspensión Multiplex BT",
+      "pais": "latam",
+      "nivel_kv": [
+        0.4
+      ],
+      "zona": [
+        "urbana",
+        "semiurbana",
+        "rural"
+      ],
+      "tipo": "suspension",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 5,
+      "vano_min": 15,
+      "vano_max": 50,
+      "conductores": [
+        "Multiplex",
+        "Cu"
+      ],
+      "requiere_retenida": false,
+      "componentes": [
+        "Poste concreto",
+        "Soporte gancho BT",
+        "Grapa suspensión Multiplex",
+        "Cinta mensajera"
+      ],
+      "observaciones": "Para Multiplex autosoportado. Verificar flecha máxima y distancias de seguridad."
+    },
+    {
+      "codigo": "BT-TERM-MUL",
+      "nombre": "Terminal Multiplex BT",
+      "pais": "latam",
+      "nivel_kv": [
+        0.4
+      ],
+      "zona": [
+        "urbana",
+        "semiurbana",
+        "rural"
+      ],
+      "tipo": "terminal",
+      "fases": "3F",
+      "ang_min": 0,
+      "ang_max": 90,
+      "vano_min": 0,
+      "vano_max": 999,
+      "conductores": [
+        "Multiplex",
+        "Cu"
+      ],
+      "requiere_retenida": true,
+      "componentes": [
+        "Poste concreto",
+        "Gancho terminal",
+        "Grapa retención Multiplex",
+        "Retenida simple",
+        "Caja de conexión BT"
+      ],
+      "observaciones": "Inicio o fin del tramo BT. Retenida recomendada."
+    }
+  ]
+}

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="MecLine LATAM — Herramienta profesional de diseño electromecánico de redes aéreas de distribución para LATAM"/>
+<meta name="product" content="mecline-latam"/>
+<meta name="platform" content="Voryn Energy"/>
+<meta name="version" content="1.0.0"/>
+<!-- NO usar este HTML en otros productos de Voryn. Prefijo: mecline_ -->
+<title>MecLine LATAM v1.0 — Voryn Energy</title>
+
+<!-- ══ FAVICON ═══════════════════════════════════════════════════ -->
+<link rel="icon" type="image/svg+xml" href="assets/icons/mecline_favicon.svg"/>
+
+<!-- ══ CDN EXTERNOS ══════════════════════════════════════════════ -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<!-- ══ LIBRERÍAS EXTERNAS ════════════════════════════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- ══ ESTILOS MECLINE ═══════════════════════════════════════════ -->
+<!-- Orden: main → components → responsive → print -->
+<link rel="stylesheet" href="css/mecline_main.css"/>
+<link rel="stylesheet" href="css/mecline_components.css"/>
+<link rel="stylesheet" href="css/mecline_responsive.css"/>
+<link rel="stylesheet" href="css/mecline_print.css"/>
+
+</head>
+<body>
+<body>
+
+<!-- ══ ONBOARDING ══ -->
+<div class="onb-bg" id="onb-bg">  <div class="onb-card">
+    <div class="onb-logo">
+      <div class="onb-logo-mark">⚡</div>
+      <div>
+        <div class="onb-logo-text">MecLine LATAM</div>
+        <div class="onb-logo-sub">Diseño electromecánico de redes aéreas</div>
+      </div>
+    </div>
+    <div>
+      <div class="onb-headline">Herramienta técnica para ingenieros que diseñan redes aéreas de distribución</div>
+      <div class="onb-sub" style="margin-top:7px">Motor de cálculo mecánico · 4 hipótesis de carga · 8 países LATAM · Asistente IA especializado · Memoria técnica profesional</div>
+    </div>
+    <div class="onb-feats">
+      <div class="onb-feat"><i class="ti ti-calculator"></i><div><div class="onb-feat-title">Motor mecánico v6</div><div class="onb-feat-sub">4 hipótesis de carga, catenaria parabólica, verificación UTS</div></div></div>
+      <div class="onb-feat"><i class="ti ti-building-factory"></i><div><div class="onb-feat-title">28 conjuntos constructivos</div><div class="onb-feat-sub">MT/BT · Recomendador y validador automático</div></div></div>
+      <div class="onb-feat"><i class="ti ti-robot"></i><div><div class="onb-feat-title">Asistente IA técnico</div><div class="onb-feat-sub">Interpreta resultados, redacta conclusiones para memoria</div></div></div>
+      <div class="onb-feat"><i class="ti ti-file-text"></i><div><div class="onb-feat-title">Memoria técnica</div><div class="onb-feat-sub">HTML/PDF con branding de empresa, norma y firmas</div></div></div>
+    </div>
+    <div class="onb-divider">Ingrese con su plan</div>
+    <div class="onb-actions">
+      <button class="btn" style="flex:1;justify-content:center;padding:11px;font-size:13px" onclick="iniciarSesion('free')"><i class="ti ti-user"></i>Continuar en Free</button>
+      <button class="btn btn-primary" style="flex:1;justify-content:center;padding:11px;font-size:13px" onclick="iniciarSesion('pro')"><i class="ti ti-crown"></i>Activar Plan Pro</button>
+    </div>
+    <div style="font-size:10.5px;color:var(--t3);text-align:center">Plan Free: cálculo básico · 5 mensajes IA/día · 3 países · sin conjuntos<br>Plan Pro: $49/mes · funcionalidad completa · 8 países · IA ilimitada</div>
+  </div>
+</div>
+
+<!-- ══ DEMO BANNER ══ -->
+<div class="demo-banner" id="demo-banner" style="display:none">
+  <i class="ti ti-info-circle"></i>
+  <span>Modo <strong id="banner-plan">FREE</strong> — <span id="banner-msg">5 mensajes IA disponibles hoy</span></span>
+  <button onclick="showModal('pricing')">✦ Activar Pro</button>
+</div>
+
+<div class="shell">
+
+<!-- ══ TOPBAR ══ -->
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-mark">⚡</div>
+    MecLine
+    <span class="logo-sub">LATAM</span>
+  </div>
+  <div class="chips">
+    <span class="chip chip-v">v6</span>
+    <span class="chip chip-beta" id="chip-plan">FREE</span>
+    <span class="chip chip-new">NUEVO</span>
+  </div>
+  <div class="tb-mode">
+    <button class="tb-btn active" id="mb-unit" onclick="setMode('unit')"><i class="ti ti-ruler-2"></i>Unitario</button>
+    <button class="tb-btn" id="mb-wiz" onclick="setMode('wizard')"><i class="ti ti-wand"></i>Wizard</button>
+    <button class="tb-btn" id="mb-proj" onclick="setMode('proj')"><i class="ti ti-layout-grid"></i>Proyecto</button>
+    <button class="tb-btn" id="mb-conj" onclick="setMode('conj')"><i class="ti ti-building-factory"></i>Conjuntos</button>
+  </div>
+  <div class="tb-nivel">
+    <button class="nb on-mt" id="nb-mt" onclick="setNivel('mt')">MT</button>
+    <button class="nb" id="nb-bt" onclick="setNivel('bt')">BT</button>
+  </div>
+  <div class="tb-r">
+    <div class="status-dot"></div>
+    <span class="status-lbl">Motor v6</span>
+    <button class="plan-badge" id="tb-plan-badge" onclick="showModal('pricing')">✦ FREE</button>
+    <button class="btn-icon" onclick="toggleDark()"><i class="ti ti-moon-stars" id="dark-icon"></i></button>
+  </div>
+</div>
+
+<!-- ══ WORKSPACE ══ -->
+<div class="workspace">
+
+<!-- ══ SIDEBAR ══ -->
+<div class="sidebar">
+  <!-- Modo Unitario -->
+  <div id="sb-unit">
+    <div class="sb-sect">Cálculo</div>
+    <div class="nav on" id="nav-calc" onclick="showPanel('calc')"><i class="ti ti-ruler-2"></i>Datos de entrada</div>
+    <div class="nav" id="nav-hip" onclick="showPanel('hip')"><i class="ti ti-chart-area"></i>Hipótesis de carga<span class="nav-badge nb-new">v5</span></div>
+    <div class="nav" id="nav-res" onclick="showPanel('res')"><i class="ti ti-chart-bar"></i>Resultados</div>
+    <div class="nav" id="nav-cat" onclick="showPanel('cat')"><i class="ti ti-bolt"></i>Catálogo conductores</div>
+    <div class="nav" id="nav-ai" onclick="showPanel('ai')"><i class="ti ti-robot"></i>Asistente IA</div>
+    <hr class="sb-div">
+    <div class="sb-sect">Sistema</div>
+    <div class="nav" id="nav-norm" onclick="showPanel('norm')"><i class="ti ti-book"></i>Normativa LATAM</div>
+    <div class="nav" id="nav-pricing" onclick="showModal('pricing')"><i class="ti ti-crown"></i>Planes & Precios</div>
+  </div>
+  <!-- Modo Wizard -->
+  <div id="sb-wizard" style="display:none">
+    <div class="sb-sect">Wizard guiado</div>
+    <div class="nav on" id="nav-wiz-0" onclick="irPaso(0)"><i class="ti ti-info-circle"></i>1. Proyecto</div>
+    <div class="nav" id="nav-wiz-1" onclick="irPaso(1)"><i class="ti ti-cloud"></i>2. Condiciones</div>
+    <div class="nav" id="nav-wiz-2" onclick="irPaso(2)"><i class="ti ti-bolt"></i>3. Conductor</div>
+    <div class="nav" id="nav-wiz-3" onclick="irPaso(3)"><i class="ti ti-vector-triangle"></i>4. Geometría</div>
+    <div class="nav" id="nav-wiz-4" onclick="irPaso(4)"><i class="ti ti-building"></i>5. Estructura</div>
+    <div class="nav" id="nav-wiz-5" onclick="irPaso(5)"><i class="ti ti-building-factory"></i>6. Conjunto</div>
+    <div class="nav" id="nav-wiz-6" onclick="irPaso(6)"><i class="ti ti-check"></i>7. Verificar</div>
+  </div>
+  <!-- Modo Proyecto -->
+  <div id="sb-proj" style="display:none">
+    <div class="sb-sect">Proyecto</div>
+    <div class="nav on" id="nav-dash" onclick="showPanel('dash')"><i class="ti ti-dashboard"></i>Resumen</div>
+    <div class="nav" id="nav-imp" onclick="showPanel('imp')"><i class="ti ti-upload"></i>Importar</div>
+    <div class="nav" id="nav-tbl" onclick="showPanel('tbl')"><i class="ti ti-table"></i>Resultados<span id="nb-err" class="nav-badge nb-err" style="display:none">0</span></div>
+    <div class="nav" id="nav-crit" onclick="showPanel('crit')"><i class="ti ti-alert-triangle"></i>Críticas</div>
+    <div class="nav" id="nav-brand" onclick="showPanel('brand')"><i class="ti ti-palette"></i>Branding</div>
+    <div class="nav" id="nav-mem" onclick="showPanel('mem')"><i class="ti ti-file-text"></i>Memoria técnica</div>
+    <div class="nav" id="nav-pai" onclick="showPanel('pai')"><i class="ti ti-robot"></i>IA Proyecto</div>
+  </div>
+  <!-- Modo Conjuntos -->
+  <div id="sb-conj" style="display:none">
+    <div class="sb-sect">Conjuntos constructivos</div>
+    <div id="conj-pro-gate" style="display:none;padding:10px 12px">
+      <div style="background:var(--gold-dim);border:1px solid rgba(200,134,10,0.2);border-radius:8px;padding:10px 12px;font-size:11px">
+        <div style="font-weight:700;color:var(--gold);margin-bottom:4px"><i class="ti ti-crown"></i> Feature Pro</div>
+        <div style="color:var(--t2);margin-bottom:8px">Los conjuntos constructivos requieren Plan Pro ($49/mes)</div>
+        <button class="btn btn-sm btn-primary" style="width:100%;justify-content:center" onclick="showModal('pricing')">Activar Pro</button>
+      </div>
+    </div>
+    <div id="conj-nav-items">
+      <div class="nav on" id="nav-conj-cat" onclick="showPanel('conj-cat')"><i class="ti ti-layout-grid"></i>Catálogo</div>
+      <div class="nav" id="nav-conj-rec" onclick="showPanel('conj-rec')"><i class="ti ti-wand"></i>Recomendador</div>
+      <div class="nav" id="nav-conj-val" onclick="showPanel('conj-val')"><i class="ti ti-check"></i>Validador</div>
+      <div class="nav" id="nav-conj-mat" onclick="showPanel('conj-mat')"><i class="ti ti-list"></i>Suministros</div>
+    </div>
+  </div>
+  <div class="sb-foot">
+    <strong>MecLine LATAM v6</strong><br>
+    Motor: validador v6<br>
+    Hipótesis: 4 condiciones<br>
+    Conjuntos: 28 configuraciones
+  </div>
+  <div class="usage-bar" id="sidebar-usage">
+    <span class="usage-label">IA hoy</span>
+    <div class="usage-track"><div class="usage-fill safe" id="usage-fill" style="width:0%"></div></div>
+    <span class="usage-count" id="usage-count">0/5</span>
+  </div>
+</div>
+
+<!-- ══ MAIN AREA ══ -->
+<div class="main">
+
+<!-- ═══ UNITARIO: CALC ═══ -->
+<div class="panel on" id="panel-calc">
+  <div class="ph">
+    <div class="ph-l"><div class="ph-title">Cálculo mecánico — Estructura individual</div><div class="ph-sub" id="calc-sub">MT · Motor v5 · 4 hipótesis de carga</div></div>
+    <div class="ph-actions">
+      <button class="btn btn-sm btn-ghost" onclick="cargarEjemplo()"><i class="ti ti-sparkles"></i>Ejemplo</button>
+      <button class="btn btn-sm" onclick="showPanel('cat')"><i class="ti ti-bolt"></i>Catálogo</button>
+    </div>
+  </div>
+  <div class="tabs">
+    <div class="tab on" onclick="showTab(event,'t-gen')"><i class="ti ti-folder"></i>Proyecto</div>
+    <div class="tab" onclick="showTab(event,'t-amb')"><i class="ti ti-cloud"></i>Condiciones</div>
+    <div class="tab" onclick="showTab(event,'t-geo')"><i class="ti ti-vector-triangle"></i>Geometría</div>
+    <div class="tab" onclick="showTab(event,'t-cond')"><i class="ti ti-bolt"></i>Conductor</div>
+    <div class="tab" onclick="showTab(event,'t-est')"><i class="ti ti-building"></i>Estructura</div>
+  </div>
+  <div class="pb">
+    <div class="tc on" id="t-gen">
+      <div class="card"><div class="sec-lbl">Datos generales</div>
+        <div class="g2">
+          <div class="fg"><label>Nombre del proyecto</label><input id="f-nombre" value="Red Aérea Rural L-01"/></div>
+          <div class="fg"><label>Cliente</label><input id="f-cliente" value="EDEQ S.A. E.S.P."/></div>
+          <div class="fg"><label>País</label>
+            <select id="f-pais" onchange="sincPais()">
+              <option value="colombia">🇨🇴 Colombia</option>
+              <option value="mexico">🇲🇽 México</option>
+              <option value="peru">🇵🇪 Perú</option>
+              <option value="chile">🇨🇱 Chile</option>
+              <option value="ecuador">🇪🇨 Ecuador</option>
+              <option value="argentina">🇦🇷 Argentina</option>
+              <option value="bolivia">🇧🇴 Bolivia</option>
+              <option value="panama">🇵🇦 Panamá</option>
+            </select>
+          </div>
+          <div class="fg"><label>Elaborado por</label><input id="f-elab" value="Ing. diseñador"/></div>
+          <div class="fg"><label>Empresa</label><input id="f-empresa" value="Consultoría Eléctrica SAS"/></div>
+          <div class="fg"><label>Zona</label>
+            <select id="f-zona">
+              <option value="rural">Rural</option>
+              <option value="urbana">Urbana</option>
+              <option value="semiurbana">Semiurbana</option>
+              <option value="industrial">Industrial</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tc" id="t-amb">
+      <div class="card"><div class="sec-lbl">Condiciones ambientales y de diseño</div>
+        <div class="g3">
+          <div class="fg"><label>Velocidad viento máx. (m/s)</label><input id="f-viento" type="number" value="27" step="0.5"/></div>
+          <div class="fg"><label>Temperatura máx. (°C)</label><input id="f-tmax" type="number" value="40"/></div>
+          <div class="fg"><label>Temperatura mín. (°C)</label><input id="f-tmin" type="number" value="5"/></div>
+          <div class="fg"><label>Temperatura promedio EDS (°C)</label><input id="f-teds" type="number" value="25"/></div>
+          <div class="fg"><label>Altitud media (m.s.n.m.)</label><input id="f-alt" type="number" value="1200"/></div>
+          <div class="fg"><label>Coef. exposición al viento</label>
+            <select id="f-expviento">
+              <option value="1.0">1.0 — Terreno abierto</option>
+              <option value="0.85">0.85 — Con obstáculos</option>
+              <option value="1.15">1.15 — Cerros / crestas</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tc" id="t-geo">
+      <div class="card"><div class="sec-lbl">Geometría de la estructura</div>
+        <div class="g3">
+          <div class="fg"><label>Vano (m)</label><input id="f-vano" type="number" value="80" step="5"/></div>
+          <div class="fg"><label>Ángulo de deflexión (°)</label><input id="f-angulo" type="number" value="0" step="1" min="0" max="90"/></div>
+          <div class="fg"><label>Vano adyacente izq. (m)</label><input id="f-vano-iz" type="number" value="80" step="5"/></div>
+          <div class="fg"><label>Tipo de apoyo</label>
+            <select id="f-tipo-apoyo">
+              <option value="alineacion">Alineación / Suspensión</option>
+              <option value="angular">Angular</option>
+              <option value="retencion">Retención / Anclaje</option>
+              <option value="terminal">Terminal</option>
+              <option value="derivacion">Derivación</option>
+            </select>
+          </div>
+          <div class="fg"><label>Desnivel (m)</label><input id="f-desnivel" type="number" value="0" step="1"/></div>
+          <div class="fg"><label>Vano regulador (m)</label><input id="f-vreg" type="number" value="80" step="5"/></div>
+        </div>
+      </div>
+    </div>
+    <div class="tc" id="t-cond">
+      <div class="card"><div class="sec-lbl">Conductor</div>
+        <div class="g2">
+          <div class="fg span2">
+            <label>Seleccionar del catálogo</label>
+            <select id="f-cat-cond" onchange="aplicarCatCond(this.value)">
+              <option value="">— Seleccione o ingrese manual —</option>
+            </select>
+          </div>
+          <div class="fg"><label>Código / Nombre</label><input id="f-cond" value="ACSR 2/0 AWG — QUAIL"/></div>
+          <div class="fg"><label>Tipo</label>
+            <select id="f-cond-tipo">
+              <option value="ACSR">ACSR</option><option value="AAAC">AAAC</option>
+              <option value="ACAR">ACAR</option><option value="AAC">AAC</option>
+              <option value="Cu">Cobre</option><option value="Multiplex">Multiplex</option>
+            </select>
+          </div>
+          <div class="fg"><label>Diámetro (mm)</label><input id="f-diam" type="number" value="13.26" step="0.01"/></div>
+          <div class="fg"><label>Peso unitario (kg/m)</label><input id="f-peso" type="number" value="0.420" step="0.001"/></div>
+          <div class="fg"><label>UTS — Carga de rotura (kN)</label><input id="f-uts" type="number" value="25.2" step="0.1"/></div>
+          <div class="fg"><label>Sección (mm²)</label><input id="f-seccion" type="number" value="67.4" step="0.1"/></div>
+          <div class="fg"><label>Módulo elasticidad (kg/mm²)</label><input id="f-moe" type="number" value="6900" step="100"/></div>
+          <div class="fg"><label>Coef. dilatación (×10⁻⁶ /°C)</label><input id="f-alpha" type="number" value="19.3" step="0.1"/></div>
+        </div>
+      </div>
+    </div>
+    <div class="tc" id="t-est">
+      <div class="card"><div class="sec-lbl">Estructura y apoyo</div>
+        <div class="g3">
+          <div class="fg"><label>Tipo de poste</label>
+            <select id="f-tipo-poste">
+              <option value="concreto">Concreto centrifugado</option>
+              <option value="acero">Acero galvanizado</option>
+              <option value="fibra">Fibra de vidrio</option>
+              <option value="madera">Madera</option>
+            </select>
+          </div>
+          <div class="fg"><label>Altura del poste (m)</label><input id="f-hposte" type="number" value="12" step="1"/></div>
+          <div class="fg"><label>Altura de amarre (m)</label><input id="f-hamarre" type="number" value="11" step="0.5"/></div>
+          <div class="fg"><label>Carga de rotura apoyo (kN)</label><input id="f-crot" type="number" value="7.35" step="0.05"/></div>
+          <div class="fg"><label>Número de circuitos</label>
+            <select id="f-circuitos"><option value="1">1 circuito</option><option value="2">2 circuitos</option></select>
+          </div>
+          <div class="fg"><label>Número de fases</label>
+            <select id="f-fases"><option value="3">Trifásico</option><option value="1">Monofásico</option></select>
+          </div>
+          <div class="fg span2"><label>Equipos en la estructura</label>
+            <select id="f-equipos" multiple style="height:90px">
+              <option value="ninguno" selected>Ninguno</option>
+              <option value="transformador">Transformador</option>
+              <option value="seccionador">Seccionador</option>
+              <option value="cortacircuito">Cortacircuito</option>
+              <option value="dps">DPS (pararrayos)</option>
+              <option value="reconectador">Reconectador</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="action-bar">
+    <button class="btn" onclick="resetCalc()"><i class="ti ti-refresh"></i>Limpiar</button>
+    <button class="btn btn-violet" onclick="showPanel('hip');calcularHipotesis()"><i class="ti ti-chart-area"></i>Ver hipótesis</button>
+    <button class="btn btn-primary" onclick="calcular()"><i class="ti ti-calculator"></i>Calcular</button>
+  </div>
+</div>
+
+<!-- ═══ HIPÓTESIS DE CARGA ═══ -->
+<div class="panel" id="panel-hip">
+  <div class="ph">
+    <div class="ph-l"><div class="ph-title">Hipótesis de carga — 4 condiciones</div><div class="ph-sub">Aproximación parabólica · Resultados preliminares</div></div>
+    <div class="ph-actions">
+      <button class="btn btn-sm btn-primary" onclick="calcularHipotesis()"><i class="ti ti-refresh"></i>Recalcular</button>
+    </div>
+  </div>
+  <div class="pb">
+    <div id="hip-upgrade-gate" style="display:none">
+      <div class="upgrade-gate">
+        <i class="ti ti-crown"></i>
+        <div>
+          <div class="upgrade-gate-title">Hipótesis de carga completas — Plan Pro</div>
+          <div class="upgrade-gate-sub">El análisis con 4 hipótesis (viento máximo, temperatura mínima, EDS y temperatura máxima) está disponible en el Plan Pro. Obtenga la verificación técnica completa por $49/mes.</div>
+          <div class="upgrade-gate-actions">
+            <button class="btn btn-primary" onclick="showModal('pricing')"><i class="ti ti-crown"></i>Activar Pro — $49/mes</button>
+            <button class="btn btn-ghost btn-sm" onclick="document.getElementById('hip-upgrade-gate').style.display='none'">Ver resumen Free</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert a-info"><i class="ti ti-info-circle"></i><div>Resultados preliminares por aproximación parabólica (válida f/L &lt; 8%). Ecuación completa de cambio de estado no implementada en esta versión. <strong>La aceptación final es responsabilidad del profesional responsable.</strong></div></div>
+    <div class="hip-grid" id="hip-grid">
+      <div style="grid-column:1/-1;text-align:center;padding:32px;color:var(--t3)">Ejecute un cálculo para ver las 4 hipótesis de carga.</div>
+    </div>
+    <div id="hip-tabla-wrap" style="display:none">
+      <div class="card">
+        <div class="sec-lbl">Tabla comparativa de hipótesis</div>
+        <div class="tbl-wrap">
+          <table class="tbl" id="hip-tabla">
+            <thead><tr>
+              <th>Hipótesis</th><th>T_horizontal (kN)</th><th>Flecha (m)</th>
+              <th>%UTS</th><th>f/L (%)</th><th>Estado</th><th>Comentario</th>
+            </tr></thead>
+            <tbody id="hip-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RESULTADOS ═══ -->
+<div class="panel" id="panel-res">
+  <div class="ph">
+    <div class="ph-l"><div class="ph-title">Resultados de verificación</div><div class="ph-sub" id="res-sub">Sin datos</div></div>
+    <div class="ph-actions">
+      <button class="btn btn-sm btn-violet" onclick="showPanel('conj-rec');recomendarConjunto()"><i class="ti ti-building-factory"></i>Sugerir conjunto</button>
+    </div>
+  </div>
+  <div class="pb" id="res-body">
+    <div class="empty"><i class="ti ti-calculator"></i><div class="empty-title">Sin resultados</div><div class="empty-sub">Ingrese datos y ejecute el cálculo</div></div>
+  </div>
+</div>
+
+<!-- ═══ CATÁLOGO CONDUCTORES ═══ -->
+<div class="panel" id="panel-cat">
+  <div class="ph">
+    <div class="ph-l"><div class="ph-title">Catálogo de conductores</div><div class="ph-sub">ACSR · AAAC · ACAR · AAC · Cu · Multiplex — Haga clic para aplicar</div></div>
+    <div class="ph-actions">
+      <div style="display:flex;gap:6px;align-items:center">
+        <select id="cat-filt-tipo" onchange="filtrarCat()" style="font-size:11.5px;padding:4px 8px;border:1px solid var(--line2);border-radius:var(--r-sm);background:var(--bg1);color:var(--t1)">
+          <option value="">Todos los tipos</option>
+          <option value="ACSR">ACSR</option><option value="AAAC">AAAC</option>
+          <option value="ACAR">ACAR</option><option value="AAC">AAC</option>
+          <option value="Cu">Cobre</option><option value="Multiplex">Multiplex</option>
+        </select>
+        <select id="cat-filt-nivel" onchange="filtrarCat()" style="font-size:11.5px;padding:4px 8px;border:1px solid var(--line2);border-radius:var(--r-sm);background:var(--bg1);color:var(--t1)">
+          <option value="">MT y BT</option><option value="mt">Solo MT</option><option value="bt">Solo BT</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="pb"><div class="cat-grid" id="cat-grid"></div></div>
+</div>
+
+<!-- ═══ ASISTENTE IA ═══ -->
+<div class="panel" id="panel-ai" style="overflow:hidden">
+  <div class="ph"><div class="ph-l"><div class="ph-title">Asistente IA — Verificación unitaria</div><div class="ph-sub">Interpreta resultados · Explica incumplimientos · Redacta conclusiones</div></div></div>
+  <div class="chat-area" id="chat-ai">
+    <div class="msg"><div class="msg-av ai">IA</div><div class="bubble">Soy el asistente técnico de MecLine LATAM. Puedo interpretar los resultados del motor de cálculo, explicar incumplimientos y preparar textos para la memoria técnica.<br><br>Ejecute un cálculo y consúlteme los resultados. <strong>No realizo cálculos propios — esa es responsabilidad del motor Python/JS.</strong></div></div>
+  </div>
+  <div class="ai-counter" id="ai-counter-unit">
+    <i class="ti ti-robot"></i>
+    <span id="ai-counter-text-unit">5 mensajes disponibles hoy (plan Free)</span>
+    <button class="btn btn-sm btn-ghost" style="margin-left:auto;font-size:10px" onclick="showModal('pricing')"><i class="ti ti-crown"></i>Activar Pro — IA ilimitada</button>
+  </div>
+  <div class="chat-footer">
+    <textarea class="chat-in" id="ci-ai" placeholder="Consulta técnica..." onkeydown="hk(event,'chat-ai','ci-ai',false)"></textarea>
+    <button class="btn btn-primary" onclick="sendMsg('chat-ai','ci-ai',false)" id="send-ai"><i class="ti ti-send"></i></button>
+  </div>
+</div>
+
+<!-- ═══ NORMATIVA ═══ -->
+<div class="panel" id="panel-norm">
+  <div class="ph"><div class="ph-l"><div class="ph-title">Base normativa LATAM</div><div class="ph-sub">8 países · Parámetros técnicos de diseño</div></div></div>
+  <div class="pb"><div class="norm-grid" id="norm-grid"></div></div>
+</div>
+
+<!-- ═══ WIZARD ═══ -->
+<div class="panel" id="panel-wizard">
+  <div class="wizard-steps" id="wiz-steps"></div>
+  <div class="pb" id="wiz-body"></div>
+  <div class="action-bar" id="wiz-actions"></div>
+</div>
+
+<!-- ═══ PROYECTO: DASHBOARD ═══ -->
+<div class="panel" id="panel-dash">
+  <div class="ph">
+    <div class="ph-l"><div class="ph-title">Resumen ejecutivo del proyecto</div><div class="ph-sub" id="dash-sub">Sin datos</div></div>
+    <div class="ph-actions">
+      <button class="btn btn-sm btn-accent" onclick="cargarDemo()"><i class="ti ti-sparkles"></i>Demo</button>
+      <button class="btn btn-sm" onclick="showPanel('mem')"><i class="ti ti-file-text"></i>Memoria</button>
+      <button class="btn btn-sm btn-primary" onclick="exportarXLSX()"><i class="ti ti-download"></i>XLSX</button>
+    </div>
+  </div>
+  <div class="pb">
+    <div class="kpi-row" id="kpi-row" style="display:none">
+      <div class="kpi-card kpi-info"><div class="kpi-label">Estructuras</div><div class="kpi-value" id="kpi-total">0</div><div class="kpi-sub">analizadas</div></div>
+      <div class="kpi-card kpi-ok"><div class="kpi-label">Sin incumplimientos</div><div class="kpi-value" id="kpi-cumple" style="color:var(--ok)">0</div><div class="kpi-trend" id="kpi-pct-ok" style="color:var(--ok)">—</div></div>
+      <div class="kpi-card kpi-warn"><div class="kpi-label">Con observaciones</div><div class="kpi-value" id="kpi-revisar" style="color:var(--warn)">0</div><div class="kpi-trend" id="kpi-pct-rev" style="color:var(--warn)">—</div></div>
+      <div class="kpi-card kpi-err"><div class="kpi-label">Críticas</div><div class="kpi-value" id="kpi-critico" style="color:var(--err)">0</div><div class="kpi-trend" id="kpi-pct-crit" style="color:var(--err)">—</div></div>
+    </div>
+    <div id="dash-body"><div class="empty"><i class="ti ti-layout-grid"></i><div class="empty-title">Proyecto vacío</div><div class="empty-sub">Importe un Excel/CSV o cargue la demo</div></div></div>
+  </div>
+</div>
+
+<!-- ═══ PROYECTO: IMPORTAR ═══ -->
+<div class="panel" id="panel-imp">
+  <div class="ph"><div class="ph-l"><div class="ph-title">Importar proyecto</div><div class="ph-sub">Excel / CSV — hasta 500 estructuras</div></div></div>
+  <div class="pb">
+    <div class="card">
+      <div class="drop" id="drop-z" onclick="document.getElementById('fi-xl').click()" ondrop="onDrop(event)" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')">
+        <i class="ti ti-cloud-upload"></i>
+        <div class="drop-title">Arrastre el archivo aquí o haga clic</div>
+        <div class="drop-sub">.xlsx · .xls · .csv · Máx. 500 estructuras</div>
+      </div>
+      <input type="file" id="fi-xl" accept=".xlsx,.xls,.csv" style="display:none" onchange="leerExcel(this)"/>
+    </div>
+    <div class="card"><div class="sec-lbl">Columnas requeridas</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>Columna</th><th>Tipo</th><th>Ejemplo</th><th>Requerida</th></tr></thead>
+        <tbody>
+          <tr><td>id_estructura</td><td class="lc">texto</td><td>E-001</td><td><span class="badge b-err">Sí</span></td></tr>
+          <tr><td>vano</td><td class="lc">número</td><td>75</td><td><span class="badge b-err">Sí</span></td></tr>
+          <tr><td>angulo</td><td class="lc">número</td><td>5</td><td><span class="badge b-err">Sí</span></td></tr>
+          <tr><td>conductor</td><td class="lc">texto</td><td>ACSR 2/0</td><td><span class="badge b-err">Sí</span></td></tr>
+          <tr><td>diam_mm</td><td class="lc">número</td><td>13.26</td><td><span class="badge b-err">Sí</span></td></tr>
+          <tr><td>peso_km</td><td class="lc">número</td><td>420</td><td><span class="badge b-err">Sí</span></td></tr>
+          <tr><td>uts_kn</td><td class="lc">número</td><td>25.2</td><td><span class="badge b-err">Sí</span></td></tr>
+          <tr><td>carga_rot_kn</td><td class="lc">número</td><td>7.35</td><td><span class="badge b-warn">Rec.</span></td></tr>
+          <tr><td>tipo_apoyo</td><td class="lc">texto</td><td>alineacion</td><td><span class="badge b-warn">Rec.</span></td></tr>
+          <tr><td>zona</td><td class="lc">texto</td><td>rural</td><td><span class="badge b-neutral">Opc.</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROYECTO: TABLA ═══ -->
+<div class="panel" id="panel-tbl">
+  <div class="ph">
+    <div class="ph-l"><div class="ph-title">Resultados del proyecto</div><div class="ph-sub" id="tbl-sub">—</div></div>
+    <div class="ph-actions">
+      <button class="btn btn-sm" onclick="exportarXLSX()"><i class="ti ti-download"></i>Exportar XLSX</button>
+    </div>
+  </div>
+  <div class="fbar">
+    <select id="flt-estado" onchange="filtrarTabla()"><option value="">Todos los estados</option><option value="cumple">Cumple</option><option value="revisar">Revisar</option><option value="critico">Crítico</option><option value="indeterminado">Indet.</option></select>
+    <input id="flt-busq" placeholder="Buscar ID..." oninput="filtrarTabla()" style="width:140px"/>
+    <span id="flt-count" style="font-size:11.5px;color:var(--t3);font-family:var(--f-mono);margin-left:auto"></span>
+  </div>
+  <div class="pb" style="padding:0"><div class="tbl-wrap" style="border:none;border-radius:0;flex:1">
+    <table class="tbl" id="res-tbl">
+      <thead><tr>
+        <th>ID</th><th>Apoyo</th><th>Conductor</th><th>Vano (m)</th>
+        <th>Ángulo (°)</th><th>%UTS viento</th><th>Uso est.</th>
+        <th>Flecha (m)</th><th>Score</th><th>Estado</th>
+      </tr></thead>
+      <tbody id="res-tbody"></tbody>
+    </table>
+  </div></div>
+</div>
+
+<!-- ═══ PROYECTO: CRÍTICAS ═══ -->
+<div class="panel" id="panel-crit">
+  <div class="ph"><div class="ph-l"><div class="ph-title">Estructuras críticas</div><div class="ph-sub" id="crit-sub">—</div></div></div>
+  <div class="pb" id="crit-body"><div class="empty"><i class="ti ti-mood-happy"></i><div class="empty-title">Sin estructuras críticas</div><div class="empty-sub">Importe datos del proyecto</div></div></div>
+</div>
+
+<!-- ═══ PROYECTO: BRANDING ═══ -->
+<div class="panel" id="panel-brand">
+  <div class="ph"><div class="ph-l"><div class="ph-title">Branding de la empresa</div><div class="ph-sub">Personaliza la memoria técnica</div></div></div>
+  <div class="pb">
+    <div class="card"><div class="sec-lbl">Identificación</div>
+      <div class="g2">
+        <div class="fg"><label>Nombre empresa</label><input id="br-nombre" value="Consultoría Eléctrica SAS"/></div>
+        <div class="fg"><label>Nombre corto</label><input id="br-corto" value="CE SAS"/></div>
+        <div class="fg"><label>Eslogan</label><input id="br-eslogan" value="Ingeniería eléctrica de alta confiabilidad"/></div>
+        <div class="fg"><label>Ciudad</label><input id="br-ciudad" value="Bogotá, Colombia"/></div>
+        <div class="fg"><label>Web</label><input id="br-web" value="www.cesas.co"/></div>
+        <div class="fg"><label>Email</label><input id="br-email" value="ingenieria@cesas.co"/></div>
+      </div>
+    </div>
+    <div class="card"><div class="sec-lbl">Colores corporativos</div>
+      <div class="g3">
+        <div class="fg"><label>Color primario</label><input type="color" id="br-c1" value="#0B3D91"/></div>
+        <div class="fg"><label>Color secundario</label><input type="color" id="br-c2" value="#1A5BB7"/></div>
+        <div class="fg"><label>Color acento</label><input type="color" id="br-c3" value="#E07B00"/></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROYECTO: MEMORIA ═══ -->
+<div class="panel" id="panel-mem">
+  <div class="ph"><div class="ph-l"><div class="ph-title">Memoria técnica</div><div class="ph-sub">Vista previa HTML · Incluye conjuntos constructivos</div></div></div>
+  <div class="pb">
+    <div class="alert a-warn"><i class="ti ti-alert-triangle"></i><div>La revisión, validación y firma son responsabilidad del ingeniero competente.</div></div>
+    <div class="g2">
+      <div class="fg"><label>Versión del documento</label><input id="mem-ver" value="V01 — Preliminar"/></div>
+      <div class="fg"><label>Código de documento</label><input id="mem-cod" value="CM-COL-001"/></div>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-primary" style="flex:1;justify-content:center;padding:12px" onclick="genMemHTML()"><i class="ti ti-printer"></i>Vista previa / Imprimir PDF</button>
+      <button class="btn" style="flex:1;justify-content:center;padding:12px" onclick="exportarDatos()"><i class="ti ti-download"></i>Exportar JSON</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ IA PROYECTO ═══ -->
+<div class="panel" id="panel-pai" style="overflow:hidden">
+  <div class="ph"><div class="ph-l"><div class="ph-title">Asistente IA — Proyecto completo</div><div class="ph-sub">Analiza línea · detecta patrones · redacta conclusiones</div></div></div>
+  <div class="chat-area" id="chat-pai">
+    <div class="msg"><div class="msg-av ai">IA</div><div class="bubble">En modo proyecto puedo analizar la línea completa, detectar patrones de criticidad y redactar conclusiones técnicas para la memoria. Cargue un proyecto primero.</div></div>
+  </div>
+  <div class="ai-counter" id="ai-counter-proj">
+    <i class="ti ti-robot"></i>
+    <span id="ai-counter-text-proj">5 mensajes disponibles hoy (plan Free)</span>
+    <button class="btn btn-sm btn-ghost" style="margin-left:auto;font-size:10px" onclick="showModal('pricing')"><i class="ti ti-crown"></i>Activar Pro</button>
+  </div>
+  <div class="chat-footer">
+    <textarea class="chat-in" id="ci-pai" placeholder="Consulta sobre el proyecto..." onkeydown="hk(event,'chat-pai','ci-pai',true)"></textarea>
+    <button class="btn btn-primary" onclick="sendMsg('chat-pai','ci-pai',true)" id="send-pai"><i class="ti ti-send"></i></button>
+  </div>
+</div>
+
+<!-- ═══ CONJUNTOS: CATÁLOGO ═══ -->
+<div class="panel" id="panel-conj-cat">
+  <div class="ph">
+    <div class="ph-l"><div class="ph-title">Catálogo de conjuntos constructivos</div><div class="ph-sub">MT · BT · 28 configuraciones · LATAM</div></div>
+    <div class="ph-actions">
+      <select id="flt-conj-pais" onchange="filtrarConjuntos()" style="font-size:11.5px;padding:4px 8px;border:1px solid var(--line2);border-radius:var(--r-sm);background:var(--bg1);color:var(--t1)">
+        <option value="">Todos los países</option>
+        <option value="colombia">Colombia</option><option value="mexico">México</option>
+        <option value="peru">Perú</option><option value="chile">Chile</option>
+        <option value="latam">LATAM genérico</option>
+      </select>
+      <select id="flt-conj-tipo" onchange="filtrarConjuntos()" style="font-size:11.5px;padding:4px 8px;border:1px solid var(--line2);border-radius:var(--r-sm);background:var(--bg1);color:var(--t1)">
+        <option value="">Todos los tipos</option>
+        <option value="suspension">Suspensión</option>
+        <option value="angular">Angular</option>
+        <option value="retencion">Retención</option>
+        <option value="terminal">Terminal</option>
+        <option value="derivacion">Derivación</option>
+        <option value="transformador">Transformador</option>
+        <option value="seccionamiento">Seccionamiento</option>
+        <option value="proteccion">Protección</option>
+        <option value="retenida">Retenida</option>
+        <option value="transicion">Transición A/S</option>
+      </select>
+    </div>
+  </div>
+  <div class="pb"><div class="conj-grid" id="conj-grid"></div></div>
+</div>
+
+<!-- ═══ CONJUNTOS: RECOMENDADOR ═══ -->
+<div class="panel" id="panel-conj-rec">
+  <div class="ph"><div class="ph-l"><div class="ph-title">Recomendador de conjunto constructivo</div><div class="ph-sub">Basado en condiciones del diseño · Resultado preliminar</div></div></div>
+  <div class="pb">
+    <div class="card"><div class="sec-lbl">Parámetros de selección</div>
+      <div class="g3">
+        <div class="fg"><label>País</label>
+          <select id="rec-pais">
+            <option value="colombia">🇨🇴 Colombia</option><option value="mexico">🇲🇽 México</option>
+            <option value="peru">🇵🇪 Perú</option><option value="chile">🇨🇱 Chile</option>
+            <option value="latam">LATAM genérico</option>
+          </select>
+        </div>
+        <div class="fg"><label>Nivel de tensión (kV)</label>
+          <select id="rec-kv">
+            <option value="13.2">13.2 kV</option><option value="11">11 kV</option>
+            <option value="22">22 kV</option><option value="33">33 kV</option>
+            <option value="0.4">0.4 kV (BT)</option>
+          </select>
+        </div>
+        <div class="fg"><label>Zona</label>
+          <select id="rec-zona">
+            <option value="rural">Rural</option><option value="urbana">Urbana</option>
+            <option value="semiurbana">Semiurbana</option><option value="industrial">Industrial</option>
+          </select>
+        </div>
+        <div class="fg"><label>Ángulo de deflexión (°)</label><input id="rec-ang" type="number" value="0" min="0" max="90"/></div>
+        <div class="fg"><label>Vano (m)</label><input id="rec-vano" type="number" value="75" min="10"/></div>
+        <div class="fg"><label>Tipo de conductor</label>
+          <select id="rec-cond-tipo">
+            <option value="ACSR">ACSR</option><option value="AAAC">AAAC</option>
+            <option value="ACAR">ACAR</option><option value="Cu">Cobre</option>
+          </select>
+        </div>
+        <div class="fg"><label>Fases</label>
+          <select id="rec-fases">
+            <option value="3F">Trifásico (3F)</option><option value="1F">Monofásico (1F)</option>
+          </select>
+        </div>
+        <div class="fg"><label>Equipos presentes</label>
+          <select id="rec-equipos" multiple style="height:80px">
+            <option value="ninguno" selected>Ninguno</option>
+            <option value="transformador">Transformador</option>
+            <option value="cortacircuito">Cortacircuito</option>
+            <option value="dps">DPS</option>
+            <option value="seccionador">Seccionador</option>
+          </select>
+        </div>
+        <div class="fg"><label>Estado de la estructura</label>
+          <select id="rec-estado-est">
+            <option value="nueva">Nueva</option><option value="existente">Existente</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="recomendarConjunto()" style="align-self:flex-start"><i class="ti ti-wand"></i>Recomendar conjunto</button>
+    <div id="rec-result"></div>
+  </div>
+</div>
+
+<!-- ═══ CONJUNTOS: VALIDADOR ═══ -->
+<div class="panel" id="panel-conj-val">
+  <div class="ph"><div class="ph-l"><div class="ph-title">Validador de conjunto constructivo</div><div class="ph-sub">Verifica aplicabilidad del conjunto seleccionado</div></div></div>
+  <div class="pb">
+    <div class="card"><div class="sec-lbl">Selección</div>
+      <div class="g2">
+        <div class="fg"><label>Conjunto a validar</label><select id="val-conj-select"><option value="">— Seleccione —</option></select></div>
+        <div class="fg"><label>Ángulo real (°)</label><input id="val-ang" type="number" value="0"/></div>
+        <div class="fg"><label>Vano real (m)</label><input id="val-vano" type="number" value="75"/></div>
+        <div class="fg"><label>Nivel de tensión (kV)</label><input id="val-kv" type="number" value="13.2" step="0.1"/></div>
+        <div class="fg"><label>Zona</label>
+          <select id="val-zona">
+            <option value="rural">Rural</option><option value="urbana">Urbana</option>
+            <option value="semiurbana">Semiurbana</option>
+          </select>
+        </div>
+        <div class="fg"><label>Conductor</label>
+          <select id="val-cond-tipo">
+            <option value="ACSR">ACSR</option><option value="AAAC">AAAC</option>
+            <option value="ACAR">ACAR</option><option value="Cu">Cobre</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="validarConjunto()" style="margin-top:8px"><i class="ti ti-check"></i>Validar conjunto</button>
+    </div>
+    <div id="val-result"></div>
+  </div>
+</div>
+
+<!-- ═══ CONJUNTOS: SUMINISTROS ═══ -->
+<div class="panel" id="panel-conj-mat">
+  <div class="ph"><div class="ph-l"><div class="ph-title">Lista de suministros del conjunto</div><div class="ph-sub">Materiales y herrajes · Referencial · No es lista de compras definitiva</div></div></div>
+  <div class="pb">
+    <div class="fg" style="max-width:340px">
+      <label>Seleccionar conjunto</label>
+      <select id="mat-conj" onchange="renderSuministros()"><option value="">— Seleccione —</option></select>
+    </div>
+    <div id="mat-body">
+      <div class="empty"><i class="ti ti-list"></i><div class="empty-title">Seleccione un conjunto</div><div class="empty-sub">Se mostrará la lista referencial de materiales</div></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /workspace -->
+</div><!-- /shell -->
+
+<!-- ══ MODAL PRICING ══ -->
+<div class="modal-bg" id="modal-pricing">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">✦ Planes MecLine LATAM</div>
+      <button class="btn btn-ghost btn-sm" onclick="closeModal('pricing')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center;margin-bottom:16px">
+        <div style="font-size:12px;color:var(--t3)">Herramienta profesional de diseño electromecánico para utilities y contratistas LATAM</div>
+      </div>
+      <div class="pricing-grid">
+        <!-- FREE -->
+        <div class="plan-card">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">$0<span>/mes</span></div>
+          <div class="plan-period">Para explorar la plataforma</div>
+          <div class="plan-features">
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>Cálculo unitario básico</span></div>
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>Catálogo 5 conductores</span></div>
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>Normativa 3 países</span></div>
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>Asistente IA (5 mensajes/día)</span></div>
+            <div class="pf-item na"><i class="ti ti-x"></i><span>Hipótesis de carga completas</span></div>
+            <div class="pf-item na"><i class="ti ti-x"></i><span>Conjuntos constructivos</span></div>
+            <div class="pf-item na"><i class="ti ti-x"></i><span>Proyecto multi-estructura</span></div>
+            <div class="pf-item na"><i class="ti ti-x"></i><span>Memoria técnica PDF</span></div>
+          </div>
+          <button class="btn" style="width:100%;justify-content:center" id="btn-plan-free" onclick="activarPlan('free')">Continuar en Free</button>
+        </div>
+        <!-- PRO -->
+        <div class="plan-card featured">
+          <div class="plan-banner">MÁS POPULAR</div>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">$49<span>/mes USD</span></div>
+          <div class="plan-period">Por usuario · Facturación mensual</div>
+          <div class="plan-features">
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>Todo de Free</span></div>
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>4 hipótesis de carga</span></div>
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>28 conjuntos constructivos</span></div>
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>Proyecto hasta 200 estructuras</span></div>
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>Catálogo completo conductores</span></div>
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>8 países + IEC 60826</span></div>
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>Memoria técnica HTML/PDF</span></div>
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>Asistente IA ilimitado</span></div>
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>Branding de empresa</span></div>
+            <div class="pf-item na"><i class="ti ti-x"></i><span>API de integración</span></div>
+            <div class="pf-item na"><i class="ti ti-x"></i><span>White-label</span></div>
+          </div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center" id="btn-plan-pro" onclick="activarPlan('pro')"><i class="ti ti-crown"></i>Activar Pro — $49/mes</button>
+        </div>
+        <!-- ENTERPRISE -->
+        <div class="plan-card">
+          <div class="plan-name">Enterprise</div>
+          <div class="plan-price enterprise">Precio<br>a medida</div>
+          <div class="plan-period">Para utilities, OR, grandes contratistas</div>
+          <div class="plan-features">
+            <div class="pf-item ok"><i class="ti ti-check"></i><span>Todo de Pro</span></div>
+            <div class="pf-item gold"><i class="ti ti-star"></i><span>Proyecto ilimitado de estructuras</span></div>
+            <div class="pf-item gold"><i class="ti ti-star"></i><span>Catálogos propietarios del OR</span></div>
+            <div class="pf-item gold"><i class="ti ti-star"></i><span>Normativa customizada por operador</span></div>
+            <div class="pf-item gold"><i class="ti ti-star"></i><span>API REST de integración</span></div>
+            <div class="pf-item gold"><i class="ti ti-star"></i><span>White-label / marca propia</span></div>
+            <div class="pf-item gold"><i class="ti ti-star"></i><span>Soporte de ingeniería dedicado</span></div>
+            <div class="pf-item gold"><i class="ti ti-star"></i><span>Onboarding y capacitación</span></div>
+          </div>
+          <button class="btn btn-accent" style="width:100%;justify-content:center" onclick="activarPlan('enterprise')"><i class="ti ti-mail"></i>Activar Enterprise</button>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;font-size:11px;color:var(--t3)">
+        Todos los planes incluyen: Motor de cálculo JavaScript offline · Sin instalación · Actualización continua
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL DETALLE CONJUNTO ══ -->
+<div class="modal-bg" id="modal-conj">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title" id="modal-conj-title">Detalle del conjunto</div>
+      <button class="btn btn-ghost btn-sm" onclick="closeModal('conj')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal-body" id="modal-conj-body"></div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal('conj')">Cerrar</button>
+      <button class="btn btn-primary btn-sm" onclick="aplicarConjunto()"><i class="ti ti-check"></i>Usar este conjunto</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ JAVASCRIPT MECLINE ═══════════════════════════════════════ -->
+<!-- Orden crítico de carga — NO reordenar sin revisar dependencias -->
+<!-- 1. App core (datos embebidos, estado global, navegación)     -->
+<script src="js/mecline_app.js"></script>
+<!-- 2. Motor de cálculo mecánico                                 -->
+<script src="js/mecline_calculations.js"></script>
+<!-- 3. Validaciones: conjuntos, recomendador, suministros        -->
+<script src="js/mecline_validations.js"></script>
+<!-- 4. Renderizado UI: catálogo, dashboard, wizard, normativa    -->
+<script src="js/mecline_ui.js"></script>
+<!-- 5. Exportaciones: XLSX, JSON, memoria técnica HTML/PDF       -->
+<script src="js/mecline_exports.js"></script>
+<!-- 6. Modales: pricing, conjuntos (helpers keyboard/backdrop)   -->
+<script src="js/mecline_modals.js"></script>
+<!-- 7. Asistente IA: Claude API, streaming, contexto técnico     -->
+<script src="js/mecline_ai_assistant.js"></script>
+
+</body>
+</html>
